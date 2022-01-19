@@ -2,6 +2,15 @@
   "compilerOptions": {
     "target": "es5",
     "lib": ["dom", "dom.iterable", "esnext"],
+    "baseUrl": ".",
+    "paths": {
+      "@globalStyle/*": ["src/GloblaStyle/*"],
+      "@api/*": ["src/Api/*"],
+      "@componets/*": ["src/Components/*"],
+      "@main/*": ["src/Main/*"],
+      "@page/*": ["src/Page/*"],
+      "@store/*": ["src/Store/"]
+    },
     "allowJs": true,
     "skipLibCheck": true,
     "esModuleInterop": true,
