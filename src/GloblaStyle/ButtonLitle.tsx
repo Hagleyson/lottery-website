@@ -1,7 +1,8 @@
 import styled from "styled-components";
-
+import { theme } from "@globalStyle/theme";
 type propsType = {
   color?: string;
+  active?: boolean;
 };
 export const ButtonLitle = styled.button`
   width: 113px;
@@ -11,6 +12,17 @@ export const ButtonLitle = styled.button`
   margin-left: 10px;
   cursor: pointer;
   border-width: 2px;
-  color: ${(props: propsType) => props.color || "black"};
-  background-color: transparent;
+  border-style: solid;
+  border-color: ${(props: propsType) => props.color || "trasparent"};
+  color: ${(props: propsType) => (props.active ? "white" : props.color)};
+  background-color: ${(props: propsType) =>
+    props.active ? props.color : "transparent"};
+
+  &:hover {
+    transform: scale(1.01);
+  }
+  .active {
+    background-color: black;
+    color: ${theme.white};
+  }
 `;

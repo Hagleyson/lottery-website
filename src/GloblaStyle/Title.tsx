@@ -5,9 +5,13 @@ type propsType = {
   fontsize?: string;
   color?: string;
 };
-export const Title = styled.h1`
+export const Title = styled.p`
+  max-width: 90%;
   font-weight: bold;
   font-style: italic;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
   font-size: ${(props: propsType) => props.fontsize || 25}px;
   color: ${(props: propsType) => props.color || theme.textPrimary};
 `;

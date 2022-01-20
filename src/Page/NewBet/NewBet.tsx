@@ -10,7 +10,7 @@ import { FC } from "react";
 import { AiOutlineArrowRight } from "react-icons/ai";
 import { useNavigate } from "react-router";
 
-const Home: FC = () => {
+const NewBet: FC = () => {
   const navigate = useNavigate();
   const handleNewGame = () => {
     navigate("/newbet");
@@ -18,9 +18,9 @@ const Home: FC = () => {
   return (
     <Layout>
       <section>
+        <Title fontsize="24">NEW BET FOR MEGA-SENA</Title>
+        <SubTitle>Choose a Game</SubTitle>
         <ContainerFilter>
-          <Title fontsize="24">Recent Games</Title>
-          <SubTitle>Filters</SubTitle>
           {games.types.map((game) => (
             <ButtonLitle key={game.type} color={game.color}>
               {game.type}
@@ -30,25 +30,21 @@ const Home: FC = () => {
             teste
           </ButtonLitle>
         </ContainerFilter>
-
-        <ContainerCardGame>
-          <CardGame color="#7F3992" isHome />
-          <CardGame color="#01AC66" isHome />
-          <CardGame color="#b89ac0" isHome />
-          <CardGame color="#00ff0d" isHome />
-          <CardGame color="#001aff" isHome />
-        </ContainerCardGame>
       </section>
       <section>
-        <ButtonLarge color="green" fontsize="24" onClick={handleNewGame}>
-          New Bet
-          <AiOutlineArrowRight />
-        </ButtonLarge>
+        <Title fontsize="24">Cart</Title>
+        <ContainerCardGame>
+          <CardGame color="#7F3992" />
+          <CardGame color="#01AC66" />
+          <CardGame color="#b89ac0" />
+          <CardGame color="#00ff0d" />
+          <CardGame color="#001aff" />
+        </ContainerCardGame>
       </section>
     </Layout>
   );
 };
-export default Home;
+export default NewBet;
 const games = {
   "min-cart-value": 30,
   types: [

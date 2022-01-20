@@ -2,6 +2,7 @@ import { Route, Routes, Navigate } from "react-router-dom";
 import Home from "@page/Home/Home";
 import ContainerLogin from "@page/Login/ContainerLogin";
 import NotFound from "@page/NotFound/NotFound";
+import NewBet from "@page/NewBet/NewBet";
 
 function Routers() {
   return (
@@ -12,6 +13,7 @@ function Routers() {
       </Route>
 
       <Route path="/home" element={<Home />}></Route>
+      <Route path="/newbet" element={<NewBet />}></Route>
       <Route path="/notFound" element={<NotFound />} />
       <Route path="*" element={<Navigate replace to="/notFound" />} />
     </Routes>

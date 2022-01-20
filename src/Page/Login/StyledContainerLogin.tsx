@@ -31,7 +31,7 @@ export const SectionLogin = styled.section`
       cursor: pointer;
     }
     div {
-      width: 244px;
+      width: 300px;
       height: 224px;
       text-align: center;
     }

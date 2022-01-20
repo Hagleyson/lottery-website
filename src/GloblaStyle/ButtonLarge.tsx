@@ -3,6 +3,7 @@ import { theme } from "@globalStyle/theme";
 
 type propsType = {
   color?: string;
+  fontsize?: string;
 };
 export const ButtonLarge = styled.button`
   display: flex;
@@ -19,7 +20,7 @@ export const ButtonLarge = styled.button`
 
   font-weight: bold;
   font-style: italic;
-  font-size: 35px;
+  font-size: ${(props: propsType) => props.fontsize || 35}px;
   letter-spacing: 0px;
   color: ${(props: propsType) =>
     props.color === "green" ? theme.greenLemon : theme.textPrimary};
