@@ -1,4 +1,5 @@
 export const theme = {
+  white: "#FFFFFF",
   background: "#F7F7F7",
   line: "#EBEBEB",
   "box-shadow-cards": "0px 3px 25px #00000014",

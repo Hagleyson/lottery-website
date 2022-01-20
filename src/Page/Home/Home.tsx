@@ -3,7 +3,7 @@ import { useParams } from "react-router";
 
 const Home: FC = () => {
   const params = useParams();
-  console.log("home");
+  console.log("home", params);
 
   return (
     <>
