@@ -12,6 +12,9 @@ const Login: FC = () => {
   const handleRegister = () => {
     navigate("/registration");
   };
+  const handleLogin = () => {
+    navigate("/home");
+  };
   return (
     <>
       <Title fontsize="35">Authentication</Title>
@@ -19,7 +22,7 @@ const Login: FC = () => {
         <Input type="text" id={"email"} placeholder="Email" />
         <Input type="password" id={"password"} placeholder="Password" />
         <Link to="/resetPassword">I forgot my password</Link>
-        <ButtonLarge color="green">
+        <ButtonLarge color="green" onClick={handleLogin}>
           Log In
           <AiOutlineArrowRight />
         </ButtonLarge>

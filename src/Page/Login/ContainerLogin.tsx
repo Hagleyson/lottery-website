@@ -1,5 +1,5 @@
-import { FC } from "react";
-import { useParams } from "react-router-dom";
+import { FC, useEffect, useState } from "react";
+import { useParams, useNavigate } from "react-router-dom";
 
 import { SectionLogin } from "./StyledContainerLogin";
 import { Title } from "@globalStyle/Title";
@@ -7,21 +7,27 @@ import Login from "./Login/Login";
 import Registration from "./Registration/Registration";
 import ResetPassword from "./ResetPassword/ResetPassword";
 
-const CotainerLogin: FC = () => {
+const CotainerLogin: FC = (props) => {
+  const [Pages, setPages] = useState(<></>);
   const params = useParams();
-
-  const handlePages = () => {
+  const navigate = useNavigate();
+  useEffect(() => {
     switch (params.page) {
       case "login":
-        return <Login />;
+        setPages(<Login />);
+        break;
       case "registration":
-        return <Registration />;
+        console.log("registration");
+        setPages(<Registration />);
+        break;
       case "resetPassword":
-        return <ResetPassword />;
-      default:
-        return <Login />;
+        setPages(<ResetPassword />);
+        break;
+      default: {
+        navigate("/notFound");
+      }
     }
-  };
+  }, [params, navigate]);
   return (
     <>
       <SectionLogin>
@@ -32,7 +38,7 @@ const CotainerLogin: FC = () => {
           <button>For</button>
           <Title fontsize="83">LOTTERY</Title>
         </div>
-        <div>{handlePages()}</div>
+        <div>{Pages}</div>
       </SectionLogin>
     </>
   );
