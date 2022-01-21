@@ -6,8 +6,9 @@ export const ContainerButtonsNewGame = styled(ContainerFilter)`
   > div {
     display: flex;
     justify-content: space-around;
+    max-height: 70px;
 
-    > button:first-child {
+    > button {
       margin-right: 15px;
     }
   }

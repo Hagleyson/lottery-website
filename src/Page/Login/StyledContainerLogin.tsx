@@ -35,6 +35,14 @@ export const SectionLogin = styled.section`
       text-align: center;
     }
   }
+  @media screen and (max-width: 786px) {
+    display: flex;
+    justify-content: center;
+
+    & div:first-child {
+      display: none;
+    }
+  }
 `;
 type propsType = {
   height?: string;

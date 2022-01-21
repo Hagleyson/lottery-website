@@ -29,6 +29,9 @@ export const LayoutStyle = styled.div`
       font: normal normal normal 15px/70px Helvetica Neue;
       color: ${theme.textPrimary};
     }
+    @media screen and (max-width: 888px) {
+      position: initial;
+    }
   }
   main {
     display: flex;
@@ -41,12 +44,30 @@ export const LayoutStyle = styled.div`
 
     > div {
       width: 80%;
-      /* max-width: 1200px; */
       height: 100%;
       display: grid;
       grid-template-columns: 60% 40%;
       > section {
         padding-top: 50px;
+      }
+    }
+    @media screen and (max-width: 1015px) {
+      > div {
+        width: 90%;
+      }
+    }
+    @media screen and (max-width: 901px) {
+      > div {
+        grid-template-columns: 65% 35%;
+      }
+    }
+    @media screen and (max-width: 888px) {
+      > div {
+        display: flex;
+        flex-direction: column;
+        > section {
+          padding: 10px;
+        }
       }
     }
   }

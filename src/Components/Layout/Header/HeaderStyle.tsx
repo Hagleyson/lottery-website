@@ -41,4 +41,9 @@ export const HeaderStyle = styled.header`
       font-size: 20px;
     }
   }
+  @media screen and (max-width: 1015px) {
+    > div {
+      width: 90%;
+    }
+  }
 `;
