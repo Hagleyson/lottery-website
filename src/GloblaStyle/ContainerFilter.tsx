@@ -7,6 +7,6 @@ export const ContainerFilter = styled.div`
   flex-direction: row;
   align-items: center;
   > h2 {
-    margin-left: 25px;
+    margin: 0 10px 0 25px;
   }
 `;

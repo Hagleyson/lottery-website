@@ -26,12 +26,9 @@ const Home: FC = () => {
               {game.type}
             </ButtonLitle>
           ))}
-          <ButtonLitle color={"blue"} active>
-            teste
-          </ButtonLitle>
         </ContainerFilter>
 
-        <ContainerCardGame>
+        <ContainerCardGame isHome>
           <CardGame color="#7F3992" isHome />
           <CardGame color="#01AC66" isHome />
           <CardGame color="#b89ac0" isHome />
@@ -40,7 +37,7 @@ const Home: FC = () => {
         </ContainerCardGame>
       </section>
       <section>
-        <ButtonLarge color="green" fontsize="24" onClick={handleNewGame}>
+        <ButtonLarge onClick={handleNewGame}>
           New Bet
           <AiOutlineArrowRight />
         </ButtonLarge>

@@ -9,7 +9,7 @@ export const ButtonLitle = styled.button`
   height: 34px;
   font-style: italic;
   border-radius: 15px;
-  margin-left: 10px;
+  margin-right: 10px;
   cursor: pointer;
   border-width: 2px;
   border-style: solid;

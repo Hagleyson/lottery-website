@@ -4,17 +4,13 @@ import { ButtonLarge } from "@globalStyle/ButtonLarge";
 import { ButtonLitle } from "@globalStyle/ButtonLitle";
 import { ContainerCardGame } from "@globalStyle/ContainerCardGame";
 import { ContainerFilter } from "@globalStyle/ContainerFilter";
+import { ContainerNumbersGame } from "@globalStyle/ContainerNumbersGame";
 import { SubTitle } from "@globalStyle/Subtitle";
 import { Title } from "@globalStyle/Title";
 import { FC } from "react";
 import { AiOutlineArrowRight } from "react-icons/ai";
-import { useNavigate } from "react-router";
 
 const NewBet: FC = () => {
-  const navigate = useNavigate();
-  const handleNewGame = () => {
-    navigate("/newbet");
-  };
   return (
     <Layout>
       <section>
@@ -26,10 +22,221 @@ const NewBet: FC = () => {
               {game.type}
             </ButtonLitle>
           ))}
-          <ButtonLitle color={"blue"} active>
-            teste
-          </ButtonLitle>
         </ContainerFilter>
+        <Title fontsize="17">Fill your bet</Title>
+        <SubTitle>
+          Mark as many numbers as you want up to a maximum of 50. win by hitting
+          15,16,17,18,19,20 or none 20 numbers drawn
+        </SubTitle>
+        <ContainerNumbersGame>
+          <div>
+            <span> 1</span>
+          </div>
+          <div>
+            <span>2</span>
+          </div>
+          <div>
+            <span>3</span>
+          </div>
+          <div>
+            <span>4</span>
+          </div>
+          <div>
+            <span>5</span>
+          </div>
+          <div>
+            <span>6</span>
+          </div>
+          <div>
+            <span>7</span>
+          </div>
+          <div>
+            <span>8</span>
+          </div>
+          <div>
+            <span>9</span>
+          </div>
+          <div>
+            <span>10</span>
+          </div>
+          <div>
+            <span>11</span>
+          </div>
+          <div>
+            <span>12</span>
+          </div>
+          <div>
+            <span> 1</span>
+          </div>
+          <div>
+            <span>2</span>
+          </div>
+          <div>
+            <span>3</span>
+          </div>
+          <div>
+            <span>4</span>
+          </div>
+          <div>
+            <span>5</span>
+          </div>
+          <div>
+            <span>6</span>
+          </div>
+          <div>
+            <span>7</span>
+          </div>
+          <div>
+            <span>8</span>
+          </div>
+          <div>
+            <span>9</span>
+          </div>
+          <div>
+            <span>10</span>
+          </div>
+          <div>
+            <span>11</span>
+          </div>
+          <div>
+            <span>12</span>
+          </div>
+          <div>
+            <span>2</span>
+          </div>
+          <div>
+            <span>3</span>
+          </div>
+          <div>
+            <span>4</span>
+          </div>
+          <div>
+            <span>5</span>
+          </div>
+          <div>
+            <span>6</span>
+          </div>
+          <div>
+            <span>7</span>
+          </div>
+          <div>
+            <span>8</span>
+          </div>
+          <div>
+            <span>9</span>
+          </div>
+          <div>
+            <span>10</span>
+          </div>
+          <div>
+            <span>11</span>
+          </div>
+          <div>
+            <span>12</span>
+          </div>
+          <div>
+            <span>2</span>
+          </div>
+          <div>
+            <span>3</span>
+          </div>
+          <div>
+            <span>4</span>
+          </div>
+          <div>
+            <span>5</span>
+          </div>
+          <div>
+            <span>6</span>
+          </div>
+          <div>
+            <span>7</span>
+          </div>
+          <div>
+            <span>8</span>
+          </div>
+          <div>
+            <span>9</span>
+          </div>
+          <div>
+            <span>10</span>
+          </div>
+          <div>
+            <span>11</span>
+          </div>
+          <div>
+            <span>12</span>
+          </div>
+          <div>
+            <span> 1</span>
+          </div>
+          <div>
+            <span>2</span>
+          </div>
+          <div>
+            <span>3</span>
+          </div>
+          <div>
+            <span>4</span>
+          </div>
+          <div>
+            <span>5</span>
+          </div>
+          <div>
+            <span>6</span>
+          </div>
+          <div>
+            <span>7</span>
+          </div>
+          <div>
+            <span>8</span>
+          </div>
+          <div>
+            <span>9</span>
+          </div>
+          <div>
+            <span>10</span>
+          </div>
+          <div>
+            <span>11</span>
+          </div>
+          <div>
+            <span>12</span>
+          </div>
+          <div>
+            <span>2</span>
+          </div>
+          <div>
+            <span>3</span>
+          </div>
+          <div>
+            <span>4</span>
+          </div>
+          <div>
+            <span>5</span>
+          </div>
+          <div>
+            <span>6</span>
+          </div>
+          <div>
+            <span>7</span>
+          </div>
+          <div>
+            <span>8</span>
+          </div>
+          <div>
+            <span>9</span>
+          </div>
+          <div>
+            <span>10</span>
+          </div>
+          <div>
+            <span>11</span>
+          </div>
+          <div>
+            <span>12</span>
+          </div>
+        </ContainerNumbersGame>
       </section>
       <section>
         <Title fontsize="24">Cart</Title>
@@ -39,6 +246,11 @@ const NewBet: FC = () => {
           <CardGame color="#b89ac0" />
           <CardGame color="#00ff0d" />
           <CardGame color="#001aff" />
+          <Title>CART TOTAL: R$ 15,00</Title>
+          <ButtonLarge>
+            Save
+            <AiOutlineArrowRight />
+          </ButtonLarge>
         </ContainerCardGame>
       </section>
     </Layout>

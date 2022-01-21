@@ -9,4 +9,6 @@ export const theme = {
   textLight: "#C1C1C1",
   greenLemon: "#B5C401",
   iconsPrimary: "#535351",
+  ball: "#ADC0C4",
+  greenBold: "#27C383",
 };
