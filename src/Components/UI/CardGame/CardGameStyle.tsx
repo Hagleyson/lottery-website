@@ -1,5 +1,4 @@
 import styled from "styled-components";
-import { theme } from "@globalStyle/theme";
 
 type propsType = {
   color?: string;
@@ -11,13 +10,13 @@ export const CardGamesStyle = styled.div`
   width: 100%;
   max-width: 100%;
   height: 80px;
-  justify-content: center;
+  justify-content: start;
   align-items: center;
   margin-bottom: 20px;
 
   svg {
     font-size: 30px;
-    margin: 0 15px;
+    margin: 0 15px 0 0;
     cursor: pointer;
     &:hover {
       color: ${(props: propsType) => props.color};

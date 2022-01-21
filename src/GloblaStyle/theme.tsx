@@ -11,4 +11,5 @@ export const theme = {
   iconsPrimary: "#535351",
   ball: "#ADC0C4",
   greenBold: "#27C383",
+  greenLight: "#27C383",
 };

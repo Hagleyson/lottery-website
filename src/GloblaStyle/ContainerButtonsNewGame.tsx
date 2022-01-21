@@ -1,0 +1,14 @@
+import styled from "styled-components";
+import { ContainerFilter } from "./ContainerFilter";
+
+export const ContainerButtonsNewGame = styled(ContainerFilter)`
+  justify-content: space-between;
+  > div {
+    display: flex;
+    justify-content: space-around;
+
+    > button:first-child {
+      margin-right: 15px;
+    }
+  }
+`;

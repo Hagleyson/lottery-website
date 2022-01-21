@@ -1,7 +1,10 @@
 import Layout from "@componets/Layout/Layout";
 import CardGame from "@componets/UI/CardGame/CardGame";
+import { ButtonActionsNewGame } from "@globalStyle/ButtonActionsNewGame";
 import { ButtonLarge } from "@globalStyle/ButtonLarge";
 import { ButtonLitle } from "@globalStyle/ButtonLitle";
+import { ContainerButtonsNewGame } from "@globalStyle/ContainerButtonsNewGame";
+import { ContainerCar } from "@globalStyle/ContainerCar";
 import { ContainerCardGame } from "@globalStyle/ContainerCardGame";
 import { ContainerFilter } from "@globalStyle/ContainerFilter";
 import { ContainerNumbersGame } from "@globalStyle/ContainerNumbersGame";
@@ -9,7 +12,7 @@ import { SubTitle } from "@globalStyle/Subtitle";
 import { Title } from "@globalStyle/Title";
 import { FC } from "react";
 import { AiOutlineArrowRight } from "react-icons/ai";
-
+import { HiOutlineShoppingCart } from "react-icons/hi";
 const NewBet: FC = () => {
   return (
     <Layout>
@@ -237,21 +240,36 @@ const NewBet: FC = () => {
             <span>12</span>
           </div>
         </ContainerNumbersGame>
+        <ContainerButtonsNewGame>
+          <div>
+            <ButtonActionsNewGame>Complete game </ButtonActionsNewGame>
+            <ButtonActionsNewGame>Clear game </ButtonActionsNewGame>
+          </div>
+          <div>
+            <ButtonActionsNewGame addToCar>
+              <HiOutlineShoppingCart />
+              Add to cart
+            </ButtonActionsNewGame>
+          </div>
+        </ContainerButtonsNewGame>
       </section>
       <section>
-        <Title fontsize="24">Cart</Title>
-        <ContainerCardGame>
-          <CardGame color="#7F3992" />
-          <CardGame color="#01AC66" />
-          <CardGame color="#b89ac0" />
-          <CardGame color="#00ff0d" />
-          <CardGame color="#001aff" />
+        <ContainerCar>
+          <Title fontsize="24">Cart</Title>
+          <ContainerCardGame>
+            <CardGame color="#7F3992" />
+            <CardGame color="#01AC66" />
+            <CardGame color="#b89ac0" />
+            <CardGame color="#00ff0d" />
+            <CardGame color="#001aff" />
+          </ContainerCardGame>
+
           <Title>CART TOTAL: R$ 15,00</Title>
           <ButtonLarge>
             Save
             <AiOutlineArrowRight />
           </ButtonLarge>
-        </ContainerCardGame>
+        </ContainerCar>
       </section>
     </Layout>
   );
