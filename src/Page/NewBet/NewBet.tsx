@@ -13,7 +13,13 @@ import { Title } from "@globalStyle/Title";
 import { FC } from "react";
 import { AiOutlineArrowRight } from "react-icons/ai";
 import { HiOutlineShoppingCart } from "react-icons/hi";
+import { useNavigate } from "react-router";
+
 const NewBet: FC = () => {
+  const navigate = useNavigate();
+  const handleSave = () => {
+    navigate("/home");
+  };
   return (
     <Layout showHome>
       <section>
@@ -269,7 +275,7 @@ const NewBet: FC = () => {
           <Title>
             CART <span>TOTAL: R$ 15,00 </span>
           </Title>
-          <ButtonLarge>
+          <ButtonLarge onClick={handleSave}>
             Save
             <AiOutlineArrowRight />
           </ButtonLarge>
