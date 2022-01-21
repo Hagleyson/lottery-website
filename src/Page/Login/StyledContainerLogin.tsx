@@ -28,7 +28,6 @@ export const SectionLogin = styled.section`
       color: ${theme.white};
       font-weight: bold;
       font-style: italic;
-      cursor: pointer;
     }
     div {
       width: 300px;

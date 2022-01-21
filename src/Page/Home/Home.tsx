@@ -37,7 +37,7 @@ const Home: FC = () => {
         </ContainerCardGame>
       </section>
       <section>
-        <ButtonLarge onClick={handleNewGame}>
+        <ButtonLarge color="green" onClick={handleNewGame}>
           New Bet
           <AiOutlineArrowRight />
         </ButtonLarge>

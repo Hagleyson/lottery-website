@@ -3,10 +3,10 @@ import Footer from "./Footer/Footer";
 import Header from "./Header/Header";
 import { LayoutStyle } from "./LayoutStyle";
 
-const Layout: FC = (props) => {
+const Layout: FC<{ showHome?: boolean }> = (props) => {
   return (
     <LayoutStyle>
-      <Header />
+      <Header showHome={props.showHome} />
       <main>
         <div>{props.children}</div>
       </main>

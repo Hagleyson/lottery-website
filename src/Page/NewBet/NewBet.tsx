@@ -15,9 +15,11 @@ import { AiOutlineArrowRight } from "react-icons/ai";
 import { HiOutlineShoppingCart } from "react-icons/hi";
 const NewBet: FC = () => {
   return (
-    <Layout>
+    <Layout showHome>
       <section>
-        <Title fontsize="24">NEW BET FOR MEGA-SENA</Title>
+        <Title fontsize="24">
+          NEW BET <span> FOR MEGA-SENA</span>
+        </Title>
         <SubTitle>Choose a Game</SubTitle>
         <ContainerFilter>
           {games.types.map((game) => (
@@ -255,7 +257,7 @@ const NewBet: FC = () => {
       </section>
       <section>
         <ContainerCar>
-          <Title fontsize="24">Cart</Title>
+          <Title fontsize="24">CART</Title>
           <ContainerCardGame>
             <CardGame color="#7F3992" />
             <CardGame color="#01AC66" />
@@ -264,7 +266,9 @@ const NewBet: FC = () => {
             <CardGame color="#001aff" />
           </ContainerCardGame>
 
-          <Title>CART TOTAL: R$ 15,00</Title>
+          <Title>
+            CART <span>TOTAL: R$ 15,00 </span>
+          </Title>
           <ButtonLarge>
             Save
             <AiOutlineArrowRight />

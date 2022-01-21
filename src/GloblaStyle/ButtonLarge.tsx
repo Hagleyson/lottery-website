@@ -18,11 +18,11 @@ export const ButtonLarge = styled.button`
   outline: none;
   margin-top: 10px;
   cursor: pointer;
-
   font-weight: bold;
   font-style: italic;
   font-size: 24px;
   letter-spacing: 0px;
-  color: ${theme.greenLemon};
   opacity: 1;
+  color: ${(props: propsType) =>
+    props.color === "green" ? theme.greenLemon : theme.textPrimary};
 `;
