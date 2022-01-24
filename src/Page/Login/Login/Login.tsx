@@ -16,6 +16,7 @@ import { loginUser } from "@api/loginLogout";
 
 const Login: FC = () => {
   const navigate = useNavigate();
+
   const formik = useFormik({
     initialValues: LoginInitialValues,
     validationSchema: LoginValidations,

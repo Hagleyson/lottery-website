@@ -16,7 +16,7 @@ export function getSession() {
   const local: string | null = localStorage.getItem(TOKEN);
   if (local) {
     const token = JSON.parse(local);
-    return token.token;
+    return token;
   }
   return false;
 }

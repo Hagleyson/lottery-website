@@ -3,12 +3,14 @@ import { FC } from "react";
 import { HeaderStyle } from "./HeaderStyle";
 import { AiOutlineArrowRight } from "react-icons/ai";
 import { useNavigate } from "react-router";
+import { destroySession } from "@api/helpers/storage/localStorage";
 const Header: FC<{ showHome?: boolean }> = (props) => {
   const navigate = useNavigate();
   const handleHome = () => {
     navigate("/home");
   };
   const handleLogout = () => {
+    destroySession();
     navigate("/");
   };
 
