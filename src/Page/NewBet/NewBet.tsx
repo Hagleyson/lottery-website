@@ -1,3 +1,4 @@
+import { GamesList } from "@api/Games";
 import Layout from "@componets/Layout/Layout";
 import CardGame from "@componets/UI/CardGame/CardGame";
 import { ButtonActionsNewGame } from "@globalStyle/ButtonActionsNewGame";
@@ -10,248 +11,86 @@ import { ContainerFilter } from "@globalStyle/ContainerFilter";
 import { ContainerNumbersGame } from "@globalStyle/ContainerNumbersGame";
 import { SubTitle } from "@globalStyle/Subtitle";
 import { Title } from "@globalStyle/Title";
-import { FC } from "react";
+import { FC, useEffect, useState } from "react";
 import { AiOutlineArrowRight } from "react-icons/ai";
 import { HiOutlineShoppingCart } from "react-icons/hi";
 import { useNavigate } from "react-router";
 
+const initialValue = {
+  id: 0,
+  type: "Lotofácil",
+  description: "",
+  range: 0,
+  price: 0,
+  "max-number": 0,
+  color: "",
+};
 const NewBet: FC = () => {
   const navigate = useNavigate();
+  const [minCartValue, setMinCartValue] = useState(0);
+  const [games, setGames] = useState([initialValue]);
+  const [currentGame, setCurrentGame] = useState(initialValue);
+  const [selectedNumbers, setSelectedNumbers] = useState([]);
   const handleSave = () => {
     navigate("/home");
+  };
+
+  useEffect(() => {
+    const searchGame = async () => {
+      const response = await GamesList();
+      await setMinCartValue(Number(response.min_cart_value));
+      await setGames(response.types);
+      setCurrentGame(response.types[0]);
+    };
+
+    searchGame();
+  }, []);
+
+  const handleGame = (id: number) => {
+    const newGame = games.filter((g) => g.id === id);
+    setCurrentGame(newGame[0]);
+  };
+  const ListButonsFilter = () =>
+    games.map((game: { id: number; color: string; type: string }) => (
+      <ButtonLitle
+        key={game.id}
+        color={game.color}
+        onClick={handleGame.bind(null, game.id)}
+        active={game.id === currentGame.id}
+      >
+        {game.type}
+      </ButtonLitle>
+    ));
+  const ListNumbersGame = () => {
+    const numbers = Array(currentGame.range).fill(0);
+    return numbers.map((n, c) => (
+      <div>
+        <span>{c + 1}</span>
+      </div>
+    ));
+  };
+  const handlerClear = () => {
+    setSelectedNumbers([]);
   };
   return (
     <Layout showHome>
       <section>
         <Title fontsize="24">
-          NEW BET <span> FOR MEGA-SENA</span>
+          NEW BET <span> FOR {currentGame.type.toLocaleUpperCase()}</span>
         </Title>
         <SubTitle>Choose a Game</SubTitle>
-        <ContainerFilter>
-          {games.types.map((game) => (
-            <ButtonLitle key={game.type} color={game.color}>
-              {game.type}
-            </ButtonLitle>
-          ))}
-        </ContainerFilter>
+        <ContainerFilter>{games ? ListButonsFilter() : null}</ContainerFilter>
         <Title fontsize="17">Fill your bet</Title>
-        <SubTitle>
-          Mark as many numbers as you want up to a maximum of 50. win by hitting
-          15,16,17,18,19,20 or none 20 numbers drawn
-        </SubTitle>
+        <SubTitle>{currentGame.description}</SubTitle>
         <ContainerNumbersGame>
-          <div>
-            <span> 1</span>
-          </div>
-          <div>
-            <span>2</span>
-          </div>
-          <div>
-            <span>3</span>
-          </div>
-          <div>
-            <span>4</span>
-          </div>
-          <div>
-            <span>5</span>
-          </div>
-          <div>
-            <span>6</span>
-          </div>
-          <div>
-            <span>7</span>
-          </div>
-          <div>
-            <span>8</span>
-          </div>
-          <div>
-            <span>9</span>
-          </div>
-          <div>
-            <span>10</span>
-          </div>
-          <div>
-            <span>11</span>
-          </div>
-          <div>
-            <span>12</span>
-          </div>
-          <div>
-            <span> 1</span>
-          </div>
-          <div>
-            <span>2</span>
-          </div>
-          <div>
-            <span>3</span>
-          </div>
-          <div>
-            <span>4</span>
-          </div>
-          <div>
-            <span>5</span>
-          </div>
-          <div>
-            <span>6</span>
-          </div>
-          <div>
-            <span>7</span>
-          </div>
-          <div>
-            <span>8</span>
-          </div>
-          <div>
-            <span>9</span>
-          </div>
-          <div>
-            <span>10</span>
-          </div>
-          <div>
-            <span>11</span>
-          </div>
-          <div>
-            <span>12</span>
-          </div>
-          <div>
-            <span>2</span>
-          </div>
-          <div>
-            <span>3</span>
-          </div>
-          <div>
-            <span>4</span>
-          </div>
-          <div>
-            <span>5</span>
-          </div>
-          <div>
-            <span>6</span>
-          </div>
-          <div>
-            <span>7</span>
-          </div>
-          <div>
-            <span>8</span>
-          </div>
-          <div>
-            <span>9</span>
-          </div>
-          <div>
-            <span>10</span>
-          </div>
-          <div>
-            <span>11</span>
-          </div>
-          <div>
-            <span>12</span>
-          </div>
-          <div>
-            <span>2</span>
-          </div>
-          <div>
-            <span>3</span>
-          </div>
-          <div>
-            <span>4</span>
-          </div>
-          <div>
-            <span>5</span>
-          </div>
-          <div>
-            <span>6</span>
-          </div>
-          <div>
-            <span>7</span>
-          </div>
-          <div>
-            <span>8</span>
-          </div>
-          <div>
-            <span>9</span>
-          </div>
-          <div>
-            <span>10</span>
-          </div>
-          <div>
-            <span>11</span>
-          </div>
-          <div>
-            <span>12</span>
-          </div>
-          <div>
-            <span> 1</span>
-          </div>
-          <div>
-            <span>2</span>
-          </div>
-          <div>
-            <span>3</span>
-          </div>
-          <div>
-            <span>4</span>
-          </div>
-          <div>
-            <span>5</span>
-          </div>
-          <div>
-            <span>6</span>
-          </div>
-          <div>
-            <span>7</span>
-          </div>
-          <div>
-            <span>8</span>
-          </div>
-          <div>
-            <span>9</span>
-          </div>
-          <div>
-            <span>10</span>
-          </div>
-          <div>
-            <span>11</span>
-          </div>
-          <div>
-            <span>12</span>
-          </div>
-          <div>
-            <span>2</span>
-          </div>
-          <div>
-            <span>3</span>
-          </div>
-          <div>
-            <span>4</span>
-          </div>
-          <div>
-            <span>5</span>
-          </div>
-          <div>
-            <span>6</span>
-          </div>
-          <div>
-            <span>7</span>
-          </div>
-          <div>
-            <span>8</span>
-          </div>
-          <div>
-            <span>9</span>
-          </div>
-          <div>
-            <span>10</span>
-          </div>
-          <div>
-            <span>11</span>
-          </div>
-          <div>
-            <span>12</span>
-          </div>
+          {currentGame ? ListNumbersGame() : null}
         </ContainerNumbersGame>
         <ContainerButtonsNewGame>
           <div>
             <ButtonActionsNewGame>Complete game </ButtonActionsNewGame>
-            <ButtonActionsNewGame>Clear game </ButtonActionsNewGame>
+            <ButtonActionsNewGame onClick={handlerClear}>
+              Clear game{" "}
+            </ButtonActionsNewGame>
           </div>
           <div>
             <ButtonActionsNewGame addToCar>
@@ -285,35 +124,3 @@ const NewBet: FC = () => {
   );
 };
 export default NewBet;
-const games = {
-  "min-cart-value": 30,
-  types: [
-    {
-      type: "Lotofácil",
-      description:
-        "Escolha 15 números para apostar na lotofácil. Você ganha acertando 11, 12, 13, 14 ou 15 números. São muitas chances de ganhar, e agora você joga de onde estiver!",
-      range: 25,
-      price: 2.5,
-      "max-number": 15,
-      color: "#7F3992",
-    },
-    {
-      type: "Mega-Sena",
-      description:
-        "Escolha 6 números dos 60 disponíveis na mega-sena. Ganhe com 6, 5 ou 4 acertos. São realizados dois sorteios semanais para você apostar e torcer para ficar milionário.",
-      range: 60,
-      price: 4.5,
-      "max-number": 6,
-      color: "#01AC66",
-    },
-    {
-      type: "Quina",
-      description:
-        "Escolha 5 números dos 80 disponíveis na quina. 5, 4, 3 ou 2 acertos. São seis sorteios semanais e seis chances de ganhar.",
-      range: 80,
-      price: 2,
-      "max-number": 5,
-      color: "#F79C31",
-    },
-  ],
-};
