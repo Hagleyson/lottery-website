@@ -72,4 +72,10 @@ export const Form = styled.form`
     text-decoration: none;
     margin: 20px 0;
   }
+  > span {
+    text-align: center;
+    color: ${theme.error};
+    font-weight: bold;
+    font-size: 1rem;
+  }
 `;

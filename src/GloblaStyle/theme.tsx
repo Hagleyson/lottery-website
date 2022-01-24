@@ -12,4 +12,5 @@ export const theme = {
   ball: "#ADC0C4",
   greenBold: "#27C383",
   greenLight: "#27C383",
+  error: "#ff2200",
 };
