@@ -12,17 +12,20 @@ import {
   LoginInitialValues,
   LoginValidations,
 } from "./InitialValuesAndValidations";
+import { loginUser } from "@api/loginLogout";
 
 const Login: FC = () => {
   const navigate = useNavigate();
   const formik = useFormik({
     initialValues: LoginInitialValues,
     validationSchema: LoginValidations,
-    onSubmit: (values, formikBag) => {
-      // navigate("/home");
-      console.log(values);
-      formikBag.setFieldValue("email", "", false);
-      formikBag.setFieldValue("password", "", false);
+    onSubmit: async (values, formikBag) => {
+      const response = await loginUser(values.email, values.password);
+      if (response) {
+        formikBag.setFieldValue("email", "", false);
+        formikBag.setFieldValue("password", "", false);
+        navigate("/home");
+      }
     },
   });
   const handleRegister = () => {

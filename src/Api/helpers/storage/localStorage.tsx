@@ -1,4 +1,4 @@
-export const TOKEN = "ravimToken";
+export const TOKEN = "lotteryToken";
 
 export function createSession(response: string) {
   try {
@@ -21,7 +21,7 @@ export function getSession() {
   return false;
 }
 
-export async function destroySession(msg: string) {
+export async function destroySession(msg?: string) {
   try {
     window.localStorage.clear();
     window.location.reload();

@@ -17,7 +17,6 @@ const CotainerLogin: FC = (props) => {
         setPages(<Login />);
         break;
       case "registration":
-        console.log("registration");
         setPages(<Registration />);
         break;
       case "resetPassword":

@@ -1,3 +1,4 @@
+import { resetPassword } from "@api/resetePassword";
 import Input from "@componets/UI/Input/Input";
 import { ButtonLarge } from "@globalStyle/ButtonLarge";
 // import { Input } from "@globalStyle/Input";
@@ -17,10 +18,11 @@ const ResetPassword: FC = () => {
   const formik = useFormik({
     initialValues: ResetInitialValues,
     validationSchema: ResetValidations,
-    onSubmit: (values, formikBag) => {
-      // navigate("/home");
-      console.log(values);
-      formikBag.setFieldValue("email", "", false);
+    onSubmit: async (values, formikBag) => {
+      const response = await resetPassword(values.email);
+      if (response) {
+        formikBag.setFieldValue("email", "", false);
+      }
     },
   });
   const handleClick = () => {

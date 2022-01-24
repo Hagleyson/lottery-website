@@ -12,17 +12,20 @@ import {
   RegisterValidations,
 } from "./InitialValuesAndValidations";
 import Input from "@componets/UI/Input/Input";
+import { createUser } from "@api/createUser";
 const Registration: FC = () => {
   const navigate = useNavigate();
   const formik = useFormik({
     initialValues: RegisterInitialValues,
     validationSchema: RegisterValidations,
-    onSubmit: (values, formikBag) => {
-      // navigate("/home");
-      console.log(values);
-      formikBag.setFieldValue("user", "", false);
-      formikBag.setFieldValue("email", "", false);
-      formikBag.setFieldValue("password", "", false);
+    onSubmit: async (values, formikBag) => {
+      const { user, email, password } = values;
+      const response = await createUser(user, email, password);
+      if (response) {
+        formikBag.setFieldValue("user", "", false);
+        formikBag.setFieldValue("email", "", false);
+        formikBag.setFieldValue("password", "", false);
+      }
     },
   });
 
