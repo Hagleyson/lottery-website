@@ -14,21 +14,7 @@ export const ContainerNumbersGame = styled.div`
   .selected {
     background-color: ${theme.greenLight};
   }
-  > div {
-    width: 63px;
-    height: 65px;
-    border-radius: 50%;
-    background-color: ${theme.ball};
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    cursor: pointer;
-    > span {
-      font-size: 20px;
-      color: ${theme.white};
-      font-weight: bold;
-    }
-  }
+
   @media screen and (max-width: 1530px) {
     grid-template-columns: repeat(9, 63px);
   }
@@ -64,5 +50,25 @@ export const ContainerNumbersGame = styled.div`
   }
   @media screen and (max-width: 530px) {
     grid-template-columns: repeat(5, 63px);
+  }
+`;
+
+type BallType = {
+  color: string | undefined;
+};
+export const Ball = styled.div`
+  width: 63px;
+  height: 65px;
+  border-radius: 50%;
+  background-color: ${(props: BallType) =>
+    props.color ? props.color : theme.ball};
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  > span {
+    font-size: 20px;
+    color: ${theme.white};
+    font-weight: bold;
   }
 `;

@@ -8,7 +8,7 @@ import { ContainerButtonsNewGame } from "@globalStyle/ContainerButtonsNewGame";
 import { ContainerCar } from "@globalStyle/ContainerCar";
 import { ContainerCardGame } from "@globalStyle/ContainerCardGame";
 import { ContainerFilter } from "@globalStyle/ContainerFilter";
-import { ContainerNumbersGame } from "@globalStyle/ContainerNumbersGame";
+import { Ball, ContainerNumbersGame } from "@globalStyle/ContainerNumbersGame";
 import { SubTitle } from "@globalStyle/Subtitle";
 import { Title } from "@globalStyle/Title";
 import { FC, useEffect, useState } from "react";
@@ -70,13 +70,13 @@ const NewBet: FC = () => {
         (element: number) => element === c + 1
       );
       return (
-        <div
+        <Ball
           key={c}
-          className={itemIsSelected ? "selected" : ""}
+          color={itemIsSelected ? currentGame.color : undefined}
           onClick={handlerSelectNumber.bind(null, c + 1)}
         >
           <span>{c + 1 < 10 ? `0${c + 1}` : c + 1}</span>
-        </div>
+        </Ball>
       );
     });
   };
