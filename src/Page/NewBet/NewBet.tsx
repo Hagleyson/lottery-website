@@ -11,6 +11,7 @@ import { ContainerFilter } from "@globalStyle/ContainerFilter";
 import { Ball, ContainerNumbersGame } from "@globalStyle/ContainerNumbersGame";
 import { SubTitle } from "@globalStyle/Subtitle";
 import { Title } from "@globalStyle/Title";
+import { convertToReal } from "@helpers/convertToReal";
 import { FC, useCallback, useEffect, useState } from "react";
 import { AiOutlineArrowRight } from "react-icons/ai";
 import { HiOutlineShoppingCart } from "react-icons/hi";
@@ -95,6 +96,7 @@ const NewBet: FC = () => {
       );
     });
   };
+
   const handleComplete = () => {
     let currentNumberSelected: number[] = [...selectedNumbers];
     if (currentNumberSelected.length === currentGame["max_number"]) {
@@ -114,8 +116,8 @@ const NewBet: FC = () => {
       }
     }
     setSelectedNumbers(currentNumberSelected);
-    ListNumbersGame();
   };
+
   const handlerSelectNumber = (number: number) => {
     let currentNumberSelected: number[] = [...selectedNumbers];
 
@@ -129,8 +131,8 @@ const NewBet: FC = () => {
       currentNumberSelected.push(number);
     }
     setSelectedNumbers(currentNumberSelected);
-    ListNumbersGame();
   };
+
   const handlerClear = () => {
     setSelectedNumbers([]);
   };
@@ -156,9 +158,8 @@ const NewBet: FC = () => {
   };
 
   const handlerDeleteToCar = useCallback(
-    (id: number) => {
-      console.log("id: ", id);
-      console.log("cart: ", cart);
+    (id: number, price: number) => {
+      setTotalValueCart((prevState) => prevState - price);
       setCart(cart.filter((current: cartGame) => current.id !== id));
     },
     [cart]
@@ -178,15 +179,12 @@ const NewBet: FC = () => {
           numbers={cur.numbers}
           price={propGame.price}
           name={propGame.type}
-          onDelete={() => handlerDeleteToCar(cur.id)}
+          onDelete={() => handlerDeleteToCar(cur.id, propGame.price)}
         />
       );
     });
   }, [cart, games, handlerDeleteToCar]);
 
-  // useEffect(() => {
-  //   console.log(cart);
-  // }, [cart]);
   return (
     <Layout showHome>
       <section>
@@ -227,7 +225,8 @@ const NewBet: FC = () => {
           <Title>
             CART{" "}
             <span>
-              TOTAL: R$ {cart.length <= 0 ? "00,00" : `${totalValueCart}`}{" "}
+              TOTAL: R${" "}
+              {cart.length <= 0 ? "00,00" : `${convertToReal(totalValueCart)}`}
             </span>
           </Title>
           <ButtonLarge onClick={handleSave}>
