@@ -29,11 +29,7 @@ const Home: FC = () => {
         </ContainerFilter>
 
         <ContainerCardGame isHome>
-          <CardGame color="#7F3992" isHome />
-          <CardGame color="#01AC66" isHome />
-          <CardGame color="#b89ac0" isHome />
-          <CardGame color="#00ff0d" isHome />
-          <CardGame color="#001aff" isHome />
+          <CardGame color="#7F3992" isHome numbers={[1234]} price={2} />
         </ContainerCardGame>
       </section>
       <section>

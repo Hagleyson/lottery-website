@@ -18,7 +18,7 @@ import { useNavigate } from "react-router";
 
 const initialValue = {
   id: 0,
-  type: "Lotofácil",
+  type: "",
   description: "",
   range: 0,
   price: 0,
@@ -119,10 +119,49 @@ const NewBet: FC = () => {
   const handlerClear = () => {
     setSelectedNumbers([]);
   };
-
-  useEffect(() => {
-    console.log(selectedNumbers);
-  }, [selectedNumbers]);
+  const handlerAddToCar = () => {
+    if (selectedNumbers.length < currentGame["max_number"]) {
+      const missingItem = currentGame["max_number"] - selectedNumbers.length;
+      alert(
+        `Selecione mais ${missingItem} ${missingItem === 1 ? "item" : "items"}.`
+      );
+      return;
+    }
+    const itemCard = {
+      game_id: currentGame.id,
+      numbers: selectedNumbers.sort((a: number, b: number) => a - b),
+    };
+    setCart((prevStatus: [{ game_id: number; numbers: number }]) => [
+      itemCard,
+      ...prevStatus,
+    ]);
+    handlerClear();
+  };
+  const ListCart = () => {
+    return cart.map(
+      (cur: { game_id: number; numbers: number[] }, idx: number) => {
+        const gameCurrent: any = games.filter(
+          (game) => game.id === cur.game_id
+        );
+        const propGame = gameCurrent[0];
+        return (
+          <CardGame
+            key={idx}
+            color={propGame.color}
+            numbers={cur.numbers}
+            price={propGame.price}
+            name={propGame.type}
+          />
+        );
+      }
+    );
+  };
+  // useEffect(() => {
+  //   console.log(selectedNumbers);
+  // }, [selectedNumbers]);
+  // useEffect(() => {
+  //   console.log(cart);
+  // }, [cart]);
   return (
     <Layout showHome>
       <section>
@@ -146,7 +185,7 @@ const NewBet: FC = () => {
             </ButtonActionsNewGame>
           </div>
           <div>
-            <ButtonActionsNewGame addToCar>
+            <ButtonActionsNewGame onClick={handlerAddToCar} addToCar>
               <HiOutlineShoppingCart />
               Add to cart
             </ButtonActionsNewGame>
@@ -158,8 +197,10 @@ const NewBet: FC = () => {
           <Title fontsize="24">CART</Title>
           <ContainerCardGame>
             {cart.length <= 0 && <h1>carrinho vazio!!!</h1>}
-            {/* <CardGame color="#7F3992" />
-            <CardGame color="#01AC66" />
+
+            {cart.length > 0 && ListCart()}
+
+            {/*<CardGame color="#01AC66" />
             <CardGame color="#b89ac0" />
             <CardGame color="#00ff0d" />
             <CardGame color="#001aff" /> */}

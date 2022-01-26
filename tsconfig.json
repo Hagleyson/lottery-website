@@ -9,7 +9,8 @@
       "@componets/*": ["src/Components/*"],
       "@main/*": ["src/Main/*"],
       "@page/*": ["src/Page/*"],
-      "@store/*": ["src/Store/"]
+      "@store/*": ["src/Store/*"],
+      "@helpers/*": ["src/Helpers/*"]
     },
     "allowJs": true,
     "skipLibCheck": true,

@@ -315,6 +315,8 @@ module.exports = function (webpackEnv) {
         "@main": path.resolve(__dirname, "../src/Main/"),
         "@page": path.resolve(__dirname, "../src/Page/"),
         "@store": path.resolve(__dirname, "../src/Store/"),
+        "@helpers": path.resolve(__dirname, "../src/Helpers/"),
+
         // Support React Native Web
         // https://www.smashingmagazine.com/2016/08/a-glimpse-into-the-future-with-react-native-for-web/
         "react-native": "react-native-web",
