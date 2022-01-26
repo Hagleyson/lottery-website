@@ -6,7 +6,7 @@ export const ContainerFilter = styled.div`
   display: flex;
   flex-direction: row;
   align-items: center;
-  > h2 {
+  > p {
     margin: 0 10px 0 25px;
   }
 `;

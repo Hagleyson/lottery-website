@@ -8,7 +8,7 @@ import PrivateRouters from "./PrivateRouters";
 function Routers() {
   return (
     <Routes>
-      <Route path="/" element={<Navigate replace to="/home" />} />
+      <Route path="/" element={<Navigate replace to="/login" />} />
       <Route path="/" element={<ContainerLogin />}>
         <Route path="/:page" element={<ContainerLogin />} />
       </Route>

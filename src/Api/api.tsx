@@ -1,5 +1,5 @@
 import axios from "axios";
-import { destroySession } from "./helpers/storage/localStorage";
+import { destroySession, getSession } from "./helpers/storage/localStorage";
 
 const API = axios.create({
   baseURL: "http://127.0.0.1:3333",
@@ -8,15 +8,18 @@ const API = axios.create({
     "Content-Type": "application/json",
   },
 });
-// // configurando o header (request)
-// API.interceptors.request.use((config) => {
-//   const sessionObject = getSession();
-//   // if (!sessionObject) console.log("entrou");
-//   config.headers.common.token = `${sessionObject}`;
-//   return config;
-// });
 
-//para dar logout (response)
+API.interceptors.request.use((config) => {
+  const sessionObject = getSession();
+  if (sessionObject) {
+    config.headers = {
+      Authorization: `${sessionObject.type} ${sessionObject.token}`,
+    };
+  }
+
+  return config;
+});
+
 API.interceptors.response.use(
   (value) => {
     return Promise.resolve(value);

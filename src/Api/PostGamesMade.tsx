@@ -1,9 +1,15 @@
 import { API } from "./api";
 
-export const GamesList = async () => {
-  const request = `/cart_games`;
+export const PostGamesMade = async (values: any) => {
+  const request = `/bet/new-bet`;
+
   try {
-    let response = await API.get(request);
+    let response = await API.post(request, values, {
+      headers: {
+        "Content-Type": "application/json",
+      },
+    });
+    console.log(response);
     if (response.status === 200) {
       return response.data;
     }
