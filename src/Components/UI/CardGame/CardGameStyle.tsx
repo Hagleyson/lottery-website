@@ -32,7 +32,7 @@ export const CardGamesStyle = styled.div`
     position: relative;
     margin-bottom: 10px;
     padding-left: 20px;
-    h2 {
+    p {
       margin-left: ${(props: propsType) => (!props.isHome ? `10px` : null)};
     }
 

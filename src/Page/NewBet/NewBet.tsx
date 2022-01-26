@@ -11,7 +11,7 @@ import { ContainerFilter } from "@globalStyle/ContainerFilter";
 import { Ball, ContainerNumbersGame } from "@globalStyle/ContainerNumbersGame";
 import { SubTitle } from "@globalStyle/Subtitle";
 import { Title } from "@globalStyle/Title";
-import { FC, useEffect, useState } from "react";
+import { FC, useCallback, useEffect, useState } from "react";
 import { AiOutlineArrowRight } from "react-icons/ai";
 import { HiOutlineShoppingCart } from "react-icons/hi";
 import { useNavigate } from "react-router";
@@ -25,6 +25,20 @@ const initialValue = {
   max_number: 0,
   color: "",
 };
+type GameType = {
+  id: number;
+  type: string;
+  description: string;
+  range: number;
+  price: number;
+  max_number: number;
+  color: string;
+};
+type cartGame = {
+  id: number;
+  game_id: number;
+  numbers: number[];
+};
 const NewBet: FC = () => {
   const navigate = useNavigate();
   const [minCartValue, setMinCartValue] = useState(0);
@@ -32,6 +46,7 @@ const NewBet: FC = () => {
   const [games, setGames] = useState([initialValue]);
   const [currentGame, setCurrentGame] = useState(initialValue);
   const [selectedNumbers, setSelectedNumbers] = useState([] as any);
+  const [totalValueCart, setTotalValueCart] = useState(0);
   const handleSave = () => {
     navigate("/home");
   };
@@ -128,37 +143,47 @@ const NewBet: FC = () => {
       return;
     }
     const itemCard = {
+      id: Date.now(),
       game_id: currentGame.id,
       numbers: selectedNumbers.sort((a: number, b: number) => a - b),
     };
+    setTotalValueCart((prevState) => prevState + currentGame.price);
     setCart((prevStatus: [{ game_id: number; numbers: number }]) => [
       itemCard,
       ...prevStatus,
     ]);
     handlerClear();
   };
-  const ListCart = () => {
-    return cart.map(
-      (cur: { game_id: number; numbers: number[] }, idx: number) => {
-        const gameCurrent: any = games.filter(
-          (game) => game.id === cur.game_id
-        );
-        const propGame = gameCurrent[0];
-        return (
-          <CardGame
-            key={idx}
-            color={propGame.color}
-            numbers={cur.numbers}
-            price={propGame.price}
-            name={propGame.type}
-          />
-        );
-      }
-    );
-  };
-  // useEffect(() => {
-  //   console.log(selectedNumbers);
-  // }, [selectedNumbers]);
+
+  const handlerDeleteToCar = useCallback(
+    (id: number) => {
+      console.log("id: ", id);
+      console.log("cart: ", cart);
+      setCart(cart.filter((current: cartGame) => current.id !== id));
+    },
+    [cart]
+  );
+
+  const ListCart = useCallback(() => {
+    return cart.map((cur: cartGame) => {
+      const gameCurrent: GameType[] = games.filter(
+        (game) => game.id === cur.game_id
+      );
+      const propGame: GameType = gameCurrent[0];
+      return (
+        <CardGame
+          key={cur.id}
+          id={cur.id}
+          color={propGame.color}
+          numbers={cur.numbers}
+          price={propGame.price}
+          name={propGame.type}
+          onDelete={() => handlerDeleteToCar(cur.id)}
+        />
+      );
+    });
+  }, [cart, games, handlerDeleteToCar]);
+
   // useEffect(() => {
   //   console.log(cart);
   // }, [cart]);
@@ -196,18 +221,14 @@ const NewBet: FC = () => {
         <ContainerCar>
           <Title fontsize="24">CART</Title>
           <ContainerCardGame>
-            {cart.length <= 0 && <h1>carrinho vazio!!!</h1>}
-
-            {cart.length > 0 && ListCart()}
-
-            {/*<CardGame color="#01AC66" />
-            <CardGame color="#b89ac0" />
-            <CardGame color="#00ff0d" />
-            <CardGame color="#001aff" /> */}
+            {cart.length <= 0 ? <h1>carrinho vazio!!!</h1> : ListCart()}
           </ContainerCardGame>
 
           <Title>
-            CART <span>TOTAL: R$ {cart.length <= 0 ? "00,00" : "12,00"} </span>
+            CART{" "}
+            <span>
+              TOTAL: R$ {cart.length <= 0 ? "00,00" : `${totalValueCart}`}{" "}
+            </span>
           </Title>
           <ButtonLarge onClick={handleSave}>
             Save

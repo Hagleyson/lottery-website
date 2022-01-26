@@ -5,7 +5,7 @@ type propsType = {
   fontsize?: string;
   color?: string;
 };
-export const Title = styled.p`
+export const Title = styled.h1`
   max-width: 90%;
   font-weight: bold;
   font-style: italic;

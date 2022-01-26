@@ -10,13 +10,17 @@ const CardGame = (props: {
   numbers: number[];
   price: number;
   name?: string;
+  id: number;
+  onDelete?: (id: number) => void;
 }) => {
-  const { color, isHome, numbers, price, name } = props;
+  const { color, isHome, numbers, price, name, onDelete, id } = props;
   const formattedNumbers = numbers.map((n) => (n < 10 ? `0${n}` : `${n}`));
 
   return (
     <CardGamesStyle color={color} isHome={isHome}>
-      {!isHome ? <IoTrashOutline /> : null}
+      {!isHome ? (
+        <IoTrashOutline onClick={() => (onDelete ? onDelete(id) : () => {})} />
+      ) : null}
       <div>
         <Title fontsize={`${isHome ? "20" : "15"}`}>
           {formattedNumbers.join(" ")}
@@ -24,7 +28,7 @@ const CardGame = (props: {
         {isHome ? <SubTitle>{`20/01/2022 - (${"R$ 2,50"})`}</SubTitle> : null}
         <Title fontsize={`${isHome ? "20" : "17"}`} color={color}>
           {name}
-          {!isHome ? <SubTitle>{convertToReal(price | 0)}</SubTitle> : null}
+          {!isHome ? <SubTitle>{convertToReal(price)}</SubTitle> : null}
         </Title>
       </div>
     </CardGamesStyle>
