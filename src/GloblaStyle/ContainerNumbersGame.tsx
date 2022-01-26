@@ -11,6 +11,9 @@ export const ContainerNumbersGame = styled.div`
   row-gap: 15px;
   margin-top: 15px;
   grid-template-columns: repeat(10, 1fr);
+  .selected {
+    background-color: ${theme.greenLight};
+  }
   > div {
     width: 63px;
     height: 65px;
@@ -19,6 +22,7 @@ export const ContainerNumbersGame = styled.div`
     display: flex;
     justify-content: center;
     align-items: center;
+    cursor: pointer;
     > span {
       font-size: 20px;
       color: ${theme.white};

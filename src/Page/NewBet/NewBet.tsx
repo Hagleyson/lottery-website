@@ -22,15 +22,16 @@ const initialValue = {
   description: "",
   range: 0,
   price: 0,
-  "max-number": 0,
+  max_number: 0,
   color: "",
 };
 const NewBet: FC = () => {
   const navigate = useNavigate();
   const [minCartValue, setMinCartValue] = useState(0);
+  const [cart, setCart] = useState([] as any);
   const [games, setGames] = useState([initialValue]);
   const [currentGame, setCurrentGame] = useState(initialValue);
-  const [selectedNumbers, setSelectedNumbers] = useState([]);
+  const [selectedNumbers, setSelectedNumbers] = useState([] as any);
   const handleSave = () => {
     navigate("/home");
   };
@@ -49,6 +50,7 @@ const NewBet: FC = () => {
   const handleGame = (id: number) => {
     const newGame = games.filter((g) => g.id === id);
     setCurrentGame(newGame[0]);
+    handlerClear();
   };
   const ListButonsFilter = () =>
     games.map((game: { id: number; color: string; type: string }) => (
@@ -63,15 +65,64 @@ const NewBet: FC = () => {
     ));
   const ListNumbersGame = () => {
     const numbers = Array(currentGame.range).fill(0);
-    return numbers.map((n, c) => (
-      <div>
-        <span>{c + 1}</span>
-      </div>
-    ));
+    return numbers.map((n, c) => {
+      const itemIsSelected = !!selectedNumbers.find(
+        (element: number) => element === c + 1
+      );
+      return (
+        <div
+          key={c}
+          className={itemIsSelected ? "selected" : ""}
+          onClick={handlerSelectNumber.bind(null, c + 1)}
+        >
+          <span>{c + 1 < 10 ? `0${c + 1}` : c + 1}</span>
+        </div>
+      );
+    });
+  };
+  const handleComplete = () => {
+    let currentNumberSelected: number[] = [...selectedNumbers];
+    if (currentNumberSelected.length === currentGame["max_number"]) {
+      alert("Não é possivel mais adicionar números");
+    }
+    for (
+      let index = 0;
+      currentNumberSelected.length < currentGame["max_number"];
+      index++
+    ) {
+      const aleatorio = Math.ceil(Math.random() * currentGame.range);
+      if (currentNumberSelected.length <= 0) {
+        currentNumberSelected.push(aleatorio);
+      }
+      if (!currentNumberSelected.some((element) => element === aleatorio)) {
+        currentNumberSelected.push(aleatorio);
+      }
+    }
+    setSelectedNumbers(currentNumberSelected);
+    ListNumbersGame();
+  };
+  const handlerSelectNumber = (number: number) => {
+    let currentNumberSelected: number[] = [...selectedNumbers];
+
+    if (currentNumberSelected.some((element: number) => element === number)) {
+      currentNumberSelected.splice(currentNumberSelected.indexOf(number), 1);
+    } else if (currentNumberSelected.length >= currentGame["max_number"]) {
+      alert("Não é possivel mais adicionar números ");
+    } else if (
+      !currentNumberSelected.some((element: number) => element === number)
+    ) {
+      currentNumberSelected.push(number);
+    }
+    setSelectedNumbers(currentNumberSelected);
+    ListNumbersGame();
   };
   const handlerClear = () => {
     setSelectedNumbers([]);
   };
+
+  useEffect(() => {
+    console.log(selectedNumbers);
+  }, [selectedNumbers]);
   return (
     <Layout showHome>
       <section>
@@ -87,9 +138,11 @@ const NewBet: FC = () => {
         </ContainerNumbersGame>
         <ContainerButtonsNewGame>
           <div>
-            <ButtonActionsNewGame>Complete game </ButtonActionsNewGame>
+            <ButtonActionsNewGame onClick={handleComplete}>
+              Complete game
+            </ButtonActionsNewGame>
             <ButtonActionsNewGame onClick={handlerClear}>
-              Clear game{" "}
+              Clear game
             </ButtonActionsNewGame>
           </div>
           <div>
@@ -104,15 +157,16 @@ const NewBet: FC = () => {
         <ContainerCar>
           <Title fontsize="24">CART</Title>
           <ContainerCardGame>
-            <CardGame color="#7F3992" />
+            {cart.length <= 0 && <h1>carrinho vazio!!!</h1>}
+            {/* <CardGame color="#7F3992" />
             <CardGame color="#01AC66" />
             <CardGame color="#b89ac0" />
             <CardGame color="#00ff0d" />
-            <CardGame color="#001aff" />
+            <CardGame color="#001aff" /> */}
           </ContainerCardGame>
 
           <Title>
-            CART <span>TOTAL: R$ 15,00 </span>
+            CART <span>TOTAL: R$ {cart.length <= 0 ? "00,00" : "12,00"} </span>
           </Title>
           <ButtonLarge onClick={handleSave}>
             Save

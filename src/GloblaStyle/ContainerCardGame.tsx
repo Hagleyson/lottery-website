@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import { theme } from "./theme";
 
 type propsType = {
   isHome?: boolean;
@@ -12,4 +13,9 @@ export const ContainerCardGame = styled.div`
   flex-direction: column;
   overflow: auto;
   margin: 20px 0;
+  > h1:last-child {
+    font-size: 1rem;
+    font-style: italic;
+    color: ${theme.subTitle};
+  }
 `;
