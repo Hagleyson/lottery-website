@@ -1,7 +1,8 @@
 import { API } from "./api";
 
-export const ListGamesMade = async () => {
-  const request = `/bet/all-bets`;
+export const ListGamesMade = async (url?: string) => {
+  const param = url || "all-bets";
+  const request = `/bet/${param}`;
   try {
     let response = await API.get(request);
     if (response.status === 200) {

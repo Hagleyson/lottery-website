@@ -1,5 +1,4 @@
 import { GamesList } from "@api/Games";
-import { PostGamesMade } from "@api/PostGamesMade";
 import Layout from "@componets/Layout/Layout";
 import CardGame from "@componets/UI/CardGame/CardGame";
 import { ButtonActionsNewGame } from "@globalStyle/ButtonActionsNewGame";
@@ -13,7 +12,7 @@ import { Ball, ContainerNumbersGame } from "@globalStyle/ContainerNumbersGame";
 import { SubTitle } from "@globalStyle/Subtitle";
 import { Title } from "@globalStyle/Title";
 import { convertToReal } from "@helpers/convertToReal";
-import { GameActions } from "@store/Game";
+import { PostBet } from "@store/Bet";
 import { FC, useCallback, useEffect, useState } from "react";
 import { AiOutlineArrowRight } from "react-icons/ai";
 import { HiOutlineShoppingCart } from "react-icons/hi";
@@ -53,9 +52,11 @@ const NewBet: FC = () => {
   const [totalValueCart, setTotalValueCart] = useState(0);
 
   const dispatch = useDispatch();
-
+  const redirect = () => {
+    navigate("/home");
+  };
   const handleSave = async () => {
-    if (totalValueCart <= minCartValue) {
+    if (totalValueCart < minCartValue) {
       alert(`Valor minimo para compra é de: ${convertToReal(minCartValue)}`);
       return;
     } else {
@@ -63,11 +64,11 @@ const NewBet: FC = () => {
         game_id: c.game_id,
         numbers: c.numbers,
       }));
-      const NewGame = { games: value };
-      let request = await PostGamesMade(NewGame);
-      console.log(request);
-      // await dispatch(GameActions.saveGame(value));
-      // navigate("/home");
+      const newGame = { games: value };
+      try {
+        await dispatch(PostBet(newGame));
+        await redirect();
+      } catch (error) {}
     }
   };
 
