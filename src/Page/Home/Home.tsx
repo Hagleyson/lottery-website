@@ -9,7 +9,7 @@ import { Title } from "@globalStyle/Title";
 import { FetchBet } from "@store/Bet";
 import { FetchListGames } from "@store/Games";
 import { RootState } from "@store/index";
-import { FC, useCallback, useEffect } from "react";
+import { FC, useCallback, useEffect, useState } from "react";
 import { AiOutlineArrowRight } from "react-icons/ai";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router";
@@ -19,6 +19,7 @@ const Home: FC = () => {
   const bet = useSelector((state: RootState) => state.games.games);
   const { types } = useSelector((state: RootState) => state.ListGames.list);
   const dispatch = useDispatch();
+  const [filters, setFilters] = useState<string[]>([]);
 
   const handleNewGame = () => {
     navigate("/newbet");
@@ -43,21 +44,41 @@ const Home: FC = () => {
       );
     });
   }, [bet, types]);
+
+  const ButtonsList = useCallback(() => {
+    return types.map((game) => {
+      const isActive = filters.indexOf(game.type) >= 0;
+      return (
+        <ButtonLitle
+          key={game.type}
+          color={game.color}
+          onClick={handlerFilter.bind(null, game.type)}
+          active={isActive}
+        >
+          {game.type}
+        </ButtonLitle>
+      );
+    });
+  }, [types]);
+
   useEffect(() => {
     dispatch(FetchBet());
     dispatch(FetchListGames());
   }, [dispatch]);
+  const handlerFilter = (type: string) => {
+    let newFilter = filters;
+    const idx = newFilter.indexOf(type);
+    idx > -1 ? newFilter.splice(idx, 1) : newFilter.push(type);
+    setFilters(newFilter);
+    dispatch(FetchBet(newFilter));
+  };
   return (
     <Layout>
       <section>
         <ContainerFilter>
           <Title fontsize="24">Recent Games</Title>
           <SubTitle>Filters</SubTitle>
-          {types.map((game) => (
-            <ButtonLitle key={game.type} color={game.color}>
-              {game.type}
-            </ButtonLitle>
-          ))}
+          {types && ButtonsList()}
         </ContainerFilter>
 
         <ContainerCardGame isHome>

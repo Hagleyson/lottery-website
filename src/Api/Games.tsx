@@ -10,6 +10,7 @@ export const GamesList = async () => {
     if (response.status === 404) {
       throw new Error("Servidor indisponível");
     }
+    throw new Error();
   } catch (error) {
     alert(`Erro ${error}`);
     return false;

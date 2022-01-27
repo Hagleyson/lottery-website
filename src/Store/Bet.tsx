@@ -28,7 +28,7 @@ export function PostBet(newGame: any) {
   };
 }
 
-export function FetchBet(url?: string) {
+export function FetchBet(url?: string[]) {
   return async (dispatch: any) => {
     let response = await ListGamesMade(url);
     await dispatch(GameActions.saveGame(response));

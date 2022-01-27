@@ -18,6 +18,7 @@ export const loginUser = async (email: string, password: string) => {
         "Não foi possivel realizar login, servidor indisponível."
       );
     }
+    throw new Error();
   } catch (error) {
     alert(error);
     return false;

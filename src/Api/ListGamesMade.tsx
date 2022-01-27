@@ -1,16 +1,25 @@
 import { API } from "./api";
 
-export const ListGamesMade = async (url?: string) => {
-  const param = url || "all-bets";
-  const request = `/bet/${param}`;
+export const ListGamesMade = async (urls?: string[]) => {
+  const param = new URLSearchParams();
+  const request = `/bet/all-bets`;
+  if (urls && urls.length > 0) {
+    urls.forEach((url) => param.append("type[]", url));
+  }
+
   try {
-    let response = await API.get(request);
+    let response = await API.get(request, {
+      params: param,
+    });
+
     if (response.status === 200) {
       return response.data;
     }
     if (response.status === 404) {
       throw new Error("Servidor indisponível");
     }
+
+    throw new Error();
   } catch (error) {
     alert(`Erro ${error}`);
     return false;

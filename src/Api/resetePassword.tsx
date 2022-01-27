@@ -12,6 +12,8 @@ export const resetPassword = async (email: string) => {
     if (response.status === 404) {
       throw new Error("Usuário não econtrado!");
     }
+
+    throw new Error();
   } catch (error) {
     alert(error);
     return false;
