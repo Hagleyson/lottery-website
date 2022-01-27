@@ -1,4 +1,3 @@
-import { GamesList } from "@api/Games";
 import Layout from "@componets/Layout/Layout";
 import CardGame from "@componets/UI/CardGame/CardGame";
 import { ButtonActionsNewGame } from "@globalStyle/ButtonActionsNewGame";
@@ -12,22 +11,15 @@ import { Ball, ContainerNumbersGame } from "@globalStyle/ContainerNumbersGame";
 import { SubTitle } from "@globalStyle/Subtitle";
 import { Title } from "@globalStyle/Title";
 import { convertToReal } from "@helpers/convertToReal";
+import { RootState } from "@store/index";
 import { PostBet } from "@store/Bet";
 import { FC, useCallback, useEffect, useState } from "react";
 import { AiOutlineArrowRight } from "react-icons/ai";
 import { HiOutlineShoppingCart } from "react-icons/hi";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router";
+import { FetchListGames, ListGameActions } from "@store/Games";
 
-const initialValue = {
-  id: 0,
-  type: "",
-  description: "",
-  range: 0,
-  price: 0,
-  max_number: 0,
-  color: "",
-};
 type GameType = {
   id: number;
   type: string;
@@ -44,12 +36,15 @@ type cartGame = {
 };
 const NewBet: FC = () => {
   const navigate = useNavigate();
-  const [minCartValue, setMinCartValue] = useState(0);
   const [cart, setCart] = useState([] as any);
-  const [games, setGames] = useState([initialValue]);
-  const [currentGame, setCurrentGame] = useState(initialValue);
   const [selectedNumbers, setSelectedNumbers] = useState([] as any);
   const [totalValueCart, setTotalValueCart] = useState(0);
+  const { types: games, min_cart_value: minCartValue } = useSelector(
+    (state: RootState) => state.ListGames.list
+  );
+  const currentGame = useSelector(
+    (state: RootState) => state.ListGames.currentGame
+  );
 
   const dispatch = useDispatch();
   const redirect = () => {
@@ -74,10 +69,7 @@ const NewBet: FC = () => {
 
   useEffect(() => {
     const searchGame = async () => {
-      const response = await GamesList();
-      await setMinCartValue(Number(response.min_cart_value));
-      await setGames(response.types);
-      setCurrentGame(response.types[0]);
+      dispatch(FetchListGames());
     };
 
     searchGame();
@@ -85,7 +77,7 @@ const NewBet: FC = () => {
 
   const handleGame = (id: number) => {
     const newGame = games.filter((g) => g.id === id);
-    setCurrentGame(newGame[0]);
+    dispatch(ListGameActions.setCurrentGame(newGame[0]));
     handlerClear();
   };
   const ListButonsFilter = () =>

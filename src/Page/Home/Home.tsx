@@ -44,7 +44,16 @@ const Home: FC = () => {
       );
     });
   }, [bet, types]);
-
+  const handlerFilter = useCallback(
+    (type: string) => {
+      let newFilter = filters;
+      const idx = newFilter.indexOf(type);
+      idx > -1 ? newFilter.splice(idx, 1) : newFilter.push(type);
+      setFilters(newFilter);
+      dispatch(FetchBet(newFilter));
+    },
+    [filters, dispatch]
+  );
   const ButtonsList = useCallback(() => {
     return types.map((game) => {
       const isActive = filters.indexOf(game.type) >= 0;
@@ -59,19 +68,13 @@ const Home: FC = () => {
         </ButtonLitle>
       );
     });
-  }, [types]);
+  }, [types, filters, handlerFilter]);
 
   useEffect(() => {
     dispatch(FetchBet());
     dispatch(FetchListGames());
   }, [dispatch]);
-  const handlerFilter = (type: string) => {
-    let newFilter = filters;
-    const idx = newFilter.indexOf(type);
-    idx > -1 ? newFilter.splice(idx, 1) : newFilter.push(type);
-    setFilters(newFilter);
-    dispatch(FetchBet(newFilter));
-  };
+
   return (
     <Layout>
       <section>
