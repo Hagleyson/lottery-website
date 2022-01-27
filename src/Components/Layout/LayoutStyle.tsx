@@ -5,9 +5,8 @@ export const LayoutStyle = styled.div`
   width: 100%;
   height: 100vh;
   max-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  position: relative;
+  display: grid;
+  grid-template-rows: 72px 1fr 72px;
   > header,
   footer {
     width: 100%;
@@ -23,8 +22,6 @@ export const LayoutStyle = styled.div`
   > footer {
     border-top: 2px solid ${theme.line};
     align-items: center;
-    position: absolute;
-    bottom: 0;
     > p {
       font: normal normal normal 15px/70px Helvetica Neue;
       color: ${theme.textPrimary};

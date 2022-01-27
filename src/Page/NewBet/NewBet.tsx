@@ -73,7 +73,7 @@ const NewBet: FC = () => {
     };
 
     searchGame();
-  }, []);
+  }, [dispatch]);
 
   const handleGame = (id: number) => {
     const newGame = games.filter((g) => g.id === id);
