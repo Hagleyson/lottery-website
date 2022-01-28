@@ -36,8 +36,8 @@ type cartGame = {
 };
 const NewBet: FC = () => {
   const navigate = useNavigate();
-  const [cart, setCart] = useState([] as any);
-  const [selectedNumbers, setSelectedNumbers] = useState([] as any);
+  const [cart, setCart] = useState<cartGame[]>([]);
+  const [selectedNumbers, setSelectedNumbers] = useState<number[]>([]);
   const [totalValueCart, setTotalValueCart] = useState(0);
   const { types: games, min_cart_value: minCartValue } = useSelector(
     (state: RootState) => state.ListGames.list
@@ -162,10 +162,7 @@ const NewBet: FC = () => {
       numbers: selectedNumbers.sort((a: number, b: number) => a - b),
     };
     setTotalValueCart((prevState) => prevState + currentGame.price);
-    setCart((prevStatus: [{ game_id: number; numbers: number }]) => [
-      itemCard,
-      ...prevStatus,
-    ]);
+    setCart((prevStatus: cartGame[]) => [itemCard, ...prevStatus]);
     handlerClear();
   };
 

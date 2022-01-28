@@ -1,6 +1,12 @@
 import { API } from "./api";
 
-export const PostGamesMade = async (values: any) => {
+type postGameType = {
+  games: {
+    game_id: number;
+    numbers: number[];
+  }[];
+};
+export const PostGamesMade = async (values: postGameType) => {
   const request = `/bet/new-bet`;
   try {
     let response = await API.post(request, values, {

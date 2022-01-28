@@ -22,9 +22,7 @@ const Registration: FC = () => {
       const { user, email, password } = values;
       const response = await createUser(user, email, password);
       if (response) {
-        formikBag.setFieldValue("user", "", false);
-        formikBag.setFieldValue("email", "", false);
-        formikBag.setFieldValue("password", "", false);
+        navigate("/");
       }
     },
   });
