@@ -39,7 +39,7 @@ export const SectionLogin = styled.section`
     display: flex;
     justify-content: center;
 
-    & div:first-child {
+    & > div:first-child {
       display: none;
     }
   }
@@ -55,9 +55,10 @@ export const Form = styled.form`
   height: ${(props: propsType) => props.height || "337"}px;
   padding: 20px;
   margin: 10px;
-  background-color: ${theme.background};
+  background-color: ${theme.white};
   box-shadow: ${theme["box-shadow-cards"]};
   text-align: right;
+  border-radius: 14px;
   button {
     width: 100%;
   }

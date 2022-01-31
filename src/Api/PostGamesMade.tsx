@@ -1,3 +1,4 @@
+import { toast } from "react-toastify";
 import { API } from "./api";
 
 type postGameType = {
@@ -15,7 +16,7 @@ export const PostGamesMade = async (values: postGameType) => {
       },
     });
     if (response.status === 200) {
-      alert("Itens salvo com sucesso!!!");
+      toast.success("Itens salvo com sucesso!!!");
       return response.data;
     }
     if (response.status === 404) {
@@ -24,7 +25,7 @@ export const PostGamesMade = async (values: postGameType) => {
 
     throw new Error();
   } catch (error) {
-    alert(`${error}`);
+    toast.error(`${error}`);
     return;
   }
 };

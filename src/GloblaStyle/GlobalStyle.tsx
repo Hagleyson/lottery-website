@@ -13,5 +13,6 @@ export const GlobalStyle = createGlobalStyle`
     background: ${theme.background};
     font-family: "Helvetica Neue", Sans-Serif;
     box-sizing: border-box;
+    
   }
 `;

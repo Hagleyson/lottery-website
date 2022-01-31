@@ -1,5 +1,5 @@
 import { API } from "./api";
-
+import { toast } from "react-toastify";
 export const ListGamesMade = async (urls?: string[]) => {
   const param = new URLSearchParams();
   const request = `/bet/all-bets`;
@@ -21,7 +21,7 @@ export const ListGamesMade = async (urls?: string[]) => {
 
     throw new Error();
   } catch (error) {
-    alert(`Erro ${error}`);
+    toast.error(`Erro ${error}`);
     return false;
   }
 };

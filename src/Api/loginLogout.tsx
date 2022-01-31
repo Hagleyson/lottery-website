@@ -1,5 +1,6 @@
 import { API } from "./api";
 import { createSession } from "./helpers/storage/localStorage";
+import { toast } from "react-toastify";
 
 export const loginUser = async (email: string, password: string) => {
   const request = `login`;
@@ -20,7 +21,7 @@ export const loginUser = async (email: string, password: string) => {
     }
     throw new Error();
   } catch (error) {
-    alert(error);
+    toast.error(`${error}`);
     return false;
   }
 };

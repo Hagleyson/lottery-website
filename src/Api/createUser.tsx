@@ -1,5 +1,5 @@
 import { API } from "./api";
-
+import { toast } from "react-toastify";
 export const createUser = async (
   user: string,
   email: string,
@@ -10,7 +10,7 @@ export const createUser = async (
   try {
     let response = await API.post(request, data);
     if (response.status === 200) {
-      alert("Usuário cadastrado com sucesso!");
+      toast.success("Usuário cadastrado com sucesso!");
       return true;
     }
     if (response.status === 404) {
@@ -18,7 +18,7 @@ export const createUser = async (
     }
     throw new Error();
   } catch (error) {
-    alert(error);
+    toast.error(`${error}`);
     return false;
   }
 };

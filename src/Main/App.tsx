@@ -1,11 +1,26 @@
-import { FC } from "react";
+import { FC, useEffect } from "react";
 import { BrowserRouter } from "react-router-dom";
 import Routers from "./Routers";
+import { toast, ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 const App: FC = () => {
   return (
-    <BrowserRouter>
-      <Routers />
-    </BrowserRouter>
+    <div>
+      <ToastContainer
+        position="top-right"
+        autoClose={5000}
+        hideProgressBar={false}
+        newestOnTop={false}
+        closeOnClick
+        rtl={false}
+        pauseOnFocusLoss
+        draggable
+        pauseOnHover
+      />
+      <BrowserRouter>
+        <Routers />
+      </BrowserRouter>
+    </div>
   );
 };
 

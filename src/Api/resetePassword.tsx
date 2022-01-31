@@ -1,3 +1,4 @@
+import { toast } from "react-toastify";
 import { API } from "./api";
 
 export const resetPassword = async (email: string) => {
@@ -6,7 +7,7 @@ export const resetPassword = async (email: string) => {
   try {
     let response = await API.post(request, data);
     if (response.status === 200) {
-      alert("Senha resetada com sucesso!");
+      toast.success("Senha resetada com sucesso!");
       return true;
     }
     if (response.status === 404) {
@@ -15,7 +16,7 @@ export const resetPassword = async (email: string) => {
 
     throw new Error();
   } catch (error) {
-    alert(error);
+    toast.error(`${error}`);
     return false;
   }
 };

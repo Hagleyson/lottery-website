@@ -1,5 +1,5 @@
 import { API } from "./api";
-
+import { toast } from "react-toastify";
 export const GamesList = async () => {
   const request = `/cart_games`;
   try {
@@ -12,7 +12,7 @@ export const GamesList = async () => {
     }
     throw new Error();
   } catch (error) {
-    alert(`Erro ${error}`);
+    toast.error(`Erro ${error}`);
     return false;
   }
 };

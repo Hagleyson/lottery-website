@@ -19,6 +19,7 @@ import { HiOutlineShoppingCart } from "react-icons/hi";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router";
 import { FetchListGames, ListGameActions } from "@store/Games";
+import { toast } from "react-toastify";
 
 type GameType = {
   id: number;
@@ -52,7 +53,9 @@ const NewBet: FC = () => {
   };
   const handleSave = async () => {
     if (totalValueCart < minCartValue) {
-      alert(`Valor minimo para compra é de: ${convertToReal(minCartValue)}`);
+      toast.info(
+        `Valor minimo para compra é de: ${convertToReal(minCartValue)}`
+      );
       return;
     } else {
       const value = cart.map((c: any) => ({
@@ -112,7 +115,7 @@ const NewBet: FC = () => {
   const handleComplete = () => {
     let currentNumberSelected: number[] = [...selectedNumbers];
     if (currentNumberSelected.length === currentGame["max_number"]) {
-      alert("Não é possivel mais adicionar números");
+      toast.info("Não é possivel mais adicionar números");
     }
     for (
       let index = 0;
@@ -136,7 +139,7 @@ const NewBet: FC = () => {
     if (currentNumberSelected.some((element: number) => element === number)) {
       currentNumberSelected.splice(currentNumberSelected.indexOf(number), 1);
     } else if (currentNumberSelected.length >= currentGame["max_number"]) {
-      alert("Não é possivel mais adicionar números ");
+      toast.info("Não é possivel mais adicionar números ");
     } else if (
       !currentNumberSelected.some((element: number) => element === number)
     ) {
@@ -151,7 +154,7 @@ const NewBet: FC = () => {
   const handlerAddToCar = () => {
     if (selectedNumbers.length < currentGame["max_number"]) {
       const missingItem = currentGame["max_number"] - selectedNumbers.length;
-      alert(
+      toast.info(
         `Selecione mais ${missingItem} ${missingItem === 1 ? "item" : "items"}.`
       );
       return;
