@@ -1,18 +1,23 @@
+import { FC } from "react";
+
+import { Input, Title } from "@Components/index";
+
+import { Form } from "../StyledContainerLogin";
+
 import { resetPassword } from "src/shared/services/resetePassword";
-import { Input } from "@Components/index";
+
 import { ButtonLarge } from "@GlobalStyle/ButtonLarge";
 
-import { Title } from "@GlobalStyle/Title";
 import { useFormik } from "formik";
-import { FC } from "react";
+
 import { AiOutlineArrowLeft, AiOutlineArrowRight } from "react-icons/ai";
 import { useNavigate } from "react-router-dom";
-import { Form } from "../StyledContainerLogin";
 
 import {
   ResetInitialValues,
   ResetValidations,
 } from "./InitialValuesAndValidations";
+
 const ResetPassword: FC = () => {
   const navigate = useNavigate();
   const formik = useFormik({

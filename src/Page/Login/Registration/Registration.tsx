@@ -1,17 +1,21 @@
+import { FC } from "react";
+
+import { Title, Input } from "@Components/index";
+
+import { Form } from "../StyledContainerLogin";
+
+import { useNavigate } from "react-router-dom";
+
 import { ButtonLarge } from "@GlobalStyle/ButtonLarge";
 
-import { Title } from "@GlobalStyle/Title";
-import { FC } from "react";
 import { AiOutlineArrowLeft, AiOutlineArrowRight } from "react-icons/ai";
-import { useNavigate } from "react-router-dom";
-import { Form } from "../StyledContainerLogin";
 
 import { useFormik } from "formik";
 import {
   RegisterInitialValues,
   RegisterValidations,
 } from "./InitialValuesAndValidations";
-import { Input } from "@Components/index";
+
 import { createUser } from "src/shared/services/createUser";
 const Registration: FC = () => {
   const navigate = useNavigate();

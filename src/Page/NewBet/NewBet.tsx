@@ -1,6 +1,6 @@
 import { FC, useCallback, useEffect, useState } from "react";
 
-import { Layout, CardGame, SubTitle } from "@Components/index";
+import { Layout, CardGame, SubTitle, Title } from "@Components/index";
 
 import { ButtonActionsNewGame } from "@GlobalStyle/ButtonActionsNewGame";
 import { ButtonLarge } from "@GlobalStyle/ButtonLarge";
@@ -10,7 +10,6 @@ import { ContainerCar } from "@GlobalStyle/ContainerCar";
 import { ContainerCardGame } from "@GlobalStyle/ContainerCardGame";
 import { ContainerFilter } from "@GlobalStyle/ContainerFilter";
 import { Ball, ContainerNumbersGame } from "@GlobalStyle/ContainerNumbersGame";
-import { Title } from "@GlobalStyle/Title";
 import { convertToReal } from "@helpers/convertToReal";
 import { RootState } from "@store/index";
 import { PostBet } from "@store/Bet";
@@ -20,6 +19,7 @@ import { HiOutlineShoppingCart } from "react-icons/hi";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router";
 import { FetchListGames, ListGameActions } from "@store/Games";
+
 import { toast } from "react-toastify";
 import Swal from "sweetalert2";
 type GameType = {

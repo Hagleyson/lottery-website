@@ -1,5 +1,5 @@
-import { SubTitle } from "@Components/index";
-import { Title } from "@GlobalStyle/Title";
+import { Title, SubTitle } from "@Components/index";
+
 import { CardGamesStyle } from "./CardGameStyle";
 import { IoTrashOutline } from "react-icons/io5";
 import { convertToReal } from "src/shared/helpers/convertToReal";

@@ -1,8 +1,10 @@
 import { FC, useEffect, useState } from "react";
+
+import { Title } from "@Components/index";
+
 import { useParams, useNavigate } from "react-router-dom";
 
 import { SectionLogin } from "./StyledContainerLogin";
-import { Title } from "@GlobalStyle/Title";
 
 import Login from "./Login/Login";
 import Registration from "./Registration/Registration";

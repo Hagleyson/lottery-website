@@ -1,17 +1,21 @@
+import { FC } from "react";
+
+import { Input, Title } from "@Components/index";
+
 import { useNavigate } from "react-router-dom";
 import { ButtonLarge } from "@GlobalStyle/ButtonLarge";
-import { Title } from "@GlobalStyle/Title";
-import { FC } from "react";
+
 import { AiOutlineArrowRight } from "react-icons/ai";
 import { Link } from "react-router-dom";
 import { Form } from "../StyledContainerLogin";
-import { Input } from "@Components/index";
 
 import { useFormik } from "formik";
+
 import {
   LoginInitialValues,
   LoginValidations,
 } from "./InitialValuesAndValidations";
+
 import { loginUser } from "src/shared/services/loginLogout";
 
 const Login: FC = () => {
