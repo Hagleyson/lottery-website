@@ -8,7 +8,7 @@ export const ContainerCardGame = styled.div`
   width: 100%;
   max-width: 100%;
   position: relative;
-  height: ${(props: propsType) => (props.isHome ? `auto` : `484px`)};
+  height: ${(props: propsType) => (props.isHome ? `530px` : `484px`)};
   display: flex;
   flex-direction: column;
   overflow: auto;
