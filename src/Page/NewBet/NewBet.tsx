@@ -1,6 +1,6 @@
 import { FC, useCallback, useEffect, useState } from "react";
 
-import { Layout, CardGame } from "@Components/index";
+import { Layout, CardGame, SubTitle } from "@Components/index";
 
 import { ButtonActionsNewGame } from "@GlobalStyle/ButtonActionsNewGame";
 import { ButtonLarge } from "@GlobalStyle/ButtonLarge";
@@ -10,7 +10,6 @@ import { ContainerCar } from "@GlobalStyle/ContainerCar";
 import { ContainerCardGame } from "@GlobalStyle/ContainerCardGame";
 import { ContainerFilter } from "@GlobalStyle/ContainerFilter";
 import { Ball, ContainerNumbersGame } from "@GlobalStyle/ContainerNumbersGame";
-import { SubTitle } from "@GlobalStyle/Subtitle";
 import { Title } from "@GlobalStyle/Title";
 import { convertToReal } from "@helpers/convertToReal";
 import { RootState } from "@store/index";

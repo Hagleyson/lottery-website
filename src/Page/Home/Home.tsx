@@ -1,11 +1,10 @@
 import { FC, useCallback, useEffect, useState } from "react";
-import { Layout, CardGame } from "@Components/index";
+import { Layout, CardGame, SubTitle } from "@Components/index";
 
 import { ButtonLarge } from "@GlobalStyle/ButtonLarge";
 import { ButtonLitle } from "@GlobalStyle/ButtonLitle";
 import { ContainerCardGame } from "@GlobalStyle/ContainerCardGame";
 import { ContainerFilter } from "@GlobalStyle/ContainerFilter";
-import { SubTitle } from "@GlobalStyle/Subtitle";
 import { Title } from "@GlobalStyle/Title";
 
 import { FetchBet } from "@store/Bet";

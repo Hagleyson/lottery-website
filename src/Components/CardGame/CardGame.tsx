@@ -1,4 +1,4 @@
-import { SubTitle } from "@GlobalStyle/Subtitle";
+import { SubTitle } from "@Components/index";
 import { Title } from "@GlobalStyle/Title";
 import { CardGamesStyle } from "./CardGameStyle";
 import { IoTrashOutline } from "react-icons/io5";
