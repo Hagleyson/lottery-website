@@ -1,26 +1,28 @@
-import Layout from "@componets/Layout/Layout";
-import CardGame from "@componets/UI/CardGame/CardGame";
-import { ButtonActionsNewGame } from "@globalStyle/ButtonActionsNewGame";
-import { ButtonLarge } from "@globalStyle/ButtonLarge";
-import { ButtonLitle } from "@globalStyle/ButtonLitle";
-import { ContainerButtonsNewGame } from "@globalStyle/ContainerButtonsNewGame";
-import { ContainerCar } from "@globalStyle/ContainerCar";
-import { ContainerCardGame } from "@globalStyle/ContainerCardGame";
-import { ContainerFilter } from "@globalStyle/ContainerFilter";
-import { Ball, ContainerNumbersGame } from "@globalStyle/ContainerNumbersGame";
-import { SubTitle } from "@globalStyle/Subtitle";
-import { Title } from "@globalStyle/Title";
+import { FC, useCallback, useEffect, useState } from "react";
+
+import { Layout, CardGame } from "@Components/index";
+
+import { ButtonActionsNewGame } from "@GlobalStyle/ButtonActionsNewGame";
+import { ButtonLarge } from "@GlobalStyle/ButtonLarge";
+import { ButtonLitle } from "@GlobalStyle/ButtonLitle";
+import { ContainerButtonsNewGame } from "@GlobalStyle/ContainerButtonsNewGame";
+import { ContainerCar } from "@GlobalStyle/ContainerCar";
+import { ContainerCardGame } from "@GlobalStyle/ContainerCardGame";
+import { ContainerFilter } from "@GlobalStyle/ContainerFilter";
+import { Ball, ContainerNumbersGame } from "@GlobalStyle/ContainerNumbersGame";
+import { SubTitle } from "@GlobalStyle/Subtitle";
+import { Title } from "@GlobalStyle/Title";
 import { convertToReal } from "@helpers/convertToReal";
 import { RootState } from "@store/index";
 import { PostBet } from "@store/Bet";
-import { FC, useCallback, useEffect, useState } from "react";
+
 import { AiOutlineArrowRight } from "react-icons/ai";
 import { HiOutlineShoppingCart } from "react-icons/hi";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router";
 import { FetchListGames, ListGameActions } from "@store/Games";
 import { toast } from "react-toastify";
-
+import Swal from "sweetalert2";
 type GameType = {
   id: number;
   type: string;
@@ -81,7 +83,7 @@ const NewBet: FC = () => {
   }, [dispatch]);
 
   const handleGame = (id: number) => {
-    const newGame = games.filter((g) => g.id === id);
+    const newGame = games.filter((g: any) => g.id === id);
     dispatch(ListGameActions.setCurrentGame(newGame[0]));
     handlerClear();
   };
@@ -173,8 +175,21 @@ const NewBet: FC = () => {
 
   const handlerDeleteToCar = useCallback(
     (id: number, price: number) => {
-      setTotalValueCart((prevState) => prevState - price);
-      setCart(cart.filter((current: cartGame) => current.id !== id));
+      Swal.fire({
+        title: "Atenção!!!",
+        text: "Você deseja excluir item do carrinho?",
+        icon: "warning",
+        showCancelButton: true,
+        confirmButtonColor: "#27C383",
+        cancelButtonColor: "#d33",
+        confirmButtonText: "Sim!",
+        cancelButtonText: "Não!",
+      }).then((result) => {
+        if (result.isConfirmed) {
+          setTotalValueCart((prevState) => prevState - price);
+          setCart(cart.filter((current: cartGame) => current.id !== id));
+        }
+      });
     },
     [cart]
   );
@@ -182,7 +197,7 @@ const NewBet: FC = () => {
   const ListCart = useCallback(() => {
     return cart.map((cur: cartGame) => {
       const gameCurrent: GameType[] = games.filter(
-        (game) => game.id === cur.game_id
+        (game: any) => game.id === cur.game_id
       );
       const propGame: GameType = gameCurrent[0];
       return (
@@ -239,8 +254,10 @@ const NewBet: FC = () => {
           <Title>
             CART{" "}
             <span>
-              TOTAL: R${" "}
-              {cart.length <= 0 ? "00,00" : `${convertToReal(totalValueCart)}`}
+              TOTAL:{" "}
+              {cart.length <= 0
+                ? "R$ 0,00"
+                : `${convertToReal(totalValueCart)}`}
             </span>
           </Title>
           <ButtonLarge onClick={handleSave}>

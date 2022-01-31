@@ -1,5 +1,5 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { GamesList } from "@api/Games";
+import { GamesList } from "src/shared/services/Games";
 
 type Game = {
   id: number;

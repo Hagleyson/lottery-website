@@ -1,8 +1,8 @@
-import { resetPassword } from "@api/resetePassword";
-import Input from "@componets/UI/Input/Input";
-import { ButtonLarge } from "@globalStyle/ButtonLarge";
-// import { Input } from "@globalStyle/Input";
-import { Title } from "@globalStyle/Title";
+import { resetPassword } from "src/shared/services/resetePassword";
+import { Input } from "@Components/index";
+import { ButtonLarge } from "@GlobalStyle/ButtonLarge";
+
+import { Title } from "@GlobalStyle/Title";
 import { useFormik } from "formik";
 import { FC } from "react";
 import { AiOutlineArrowLeft, AiOutlineArrowRight } from "react-icons/ai";

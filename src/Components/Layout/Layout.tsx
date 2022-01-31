@@ -1,6 +1,5 @@
 import { FC } from "react";
-import Footer from "./Footer/Footer";
-import Header from "./Header/Header";
+import { Footer, Header } from "@Components/index";
 import { LayoutStyle } from "./LayoutStyle";
 
 const Layout: FC<{ showHome?: boolean }> = (props) => {

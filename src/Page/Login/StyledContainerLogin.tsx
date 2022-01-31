@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import { theme } from "@globalStyle/theme";
+import { theme } from "@GlobalStyle/theme";
 export const SectionLogin = styled.section`
   width: 100%;
   height: 100vh;

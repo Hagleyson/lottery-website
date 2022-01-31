@@ -1,7 +1,9 @@
-import { FC, useEffect } from "react";
+import { FC } from "react";
+
 import { BrowserRouter } from "react-router-dom";
 import Routers from "./Routers";
-import { toast, ToastContainer } from "react-toastify";
+
+import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 const App: FC = () => {
   return (

@@ -1,5 +1,5 @@
 import axios from "axios";
-import { destroySession, getSession } from "./helpers/storage/localStorage";
+import { destroySession, getSession } from "@helpers/localStorage";
 
 const API = axios.create({
   baseURL: "http://127.0.0.1:3333",

@@ -1,9 +1,9 @@
-import { Title } from "@globalStyle/Title";
+import { Title } from "@GlobalStyle/Title";
 import { FC } from "react";
 import { HeaderStyle } from "./HeaderStyle";
 import { AiOutlineArrowRight } from "react-icons/ai";
 import { useNavigate } from "react-router";
-import { destroySession } from "@api/helpers/storage/localStorage";
+import { destroySession } from "@helpers/localStorage";
 const Header: FC<{ showHome?: boolean }> = (props) => {
   const navigate = useNavigate();
   const handleHome = () => {

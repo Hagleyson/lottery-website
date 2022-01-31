@@ -1,10 +1,11 @@
-import { getSession } from "@api/helpers/storage/localStorage";
+import { getSession } from "@helpers/localStorage";
 
 import { Navigate, useLocation } from "react-router-dom";
 
 type propsType = {
   children: JSX.Element;
 };
+
 const PrivateRouters = (props: propsType) => {
   let auth = getSession();
   let location = useLocation();
@@ -13,4 +14,5 @@ const PrivateRouters = (props: propsType) => {
   }
   return props.children;
 };
+
 export default PrivateRouters;

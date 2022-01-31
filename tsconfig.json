@@ -4,13 +4,13 @@
     "lib": ["dom", "dom.iterable", "esnext"],
     "baseUrl": ".",
     "paths": {
-      "@globalStyle/*": ["src/GloblaStyle/*"],
-      "@api/*": ["src/Api/*"],
-      "@componets/*": ["src/Components/*"],
+      "@Components/*": ["src/Components/*"],
+      "@GlobalStyle/*": ["src/GloblaStyle/*"],
       "@main/*": ["src/Main/*"],
       "@page/*": ["src/Page/*"],
-      "@store/*": ["src/Store/*"],
-      "@helpers/*": ["src/Helpers/*"]
+      "@api/*": ["src/shared/services/*"],
+      "@helpers/*": ["src/shared/helpers/*"],
+      "@store/*": ["src/store/*"]
     },
     "allowJs": true,
     "skipLibCheck": true,

@@ -2,12 +2,13 @@ import { FC, useEffect, useState } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 
 import { SectionLogin } from "./StyledContainerLogin";
-import { Title } from "@globalStyle/Title";
+import { Title } from "@GlobalStyle/Title";
+
 import Login from "./Login/Login";
 import Registration from "./Registration/Registration";
 import ResetPassword from "./ResetPassword/ResetPassword";
 
-const CotainerLogin: FC = (props) => {
+const CotainerLogin: FC = () => {
   const [Pages, setPages] = useState(<></>);
   const params = useParams();
   const navigate = useNavigate();

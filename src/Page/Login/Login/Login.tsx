@@ -1,18 +1,18 @@
 import { useNavigate } from "react-router-dom";
-import { ButtonLarge } from "@globalStyle/ButtonLarge";
-import { Title } from "@globalStyle/Title";
+import { ButtonLarge } from "@GlobalStyle/ButtonLarge";
+import { Title } from "@GlobalStyle/Title";
 import { FC } from "react";
 import { AiOutlineArrowRight } from "react-icons/ai";
 import { Link } from "react-router-dom";
 import { Form } from "../StyledContainerLogin";
-import Input from "@componets/UI/Input/Input";
+import { Input } from "@Components/index";
 
 import { useFormik } from "formik";
 import {
   LoginInitialValues,
   LoginValidations,
 } from "./InitialValuesAndValidations";
-import { loginUser } from "@api/loginLogout";
+import { loginUser } from "src/shared/services/loginLogout";
 
 const Login: FC = () => {
   const navigate = useNavigate();

@@ -1,5 +1,5 @@
-import { PostGamesMade } from "@api/PostGamesMade";
-import { ListGamesMade } from "@api/ListGamesMade";
+import { PostGamesMade } from "src/shared/services/PostGamesMade";
+import { ListGamesMade } from "src/shared/services/ListGamesMade";
 import { createSlice } from "@reduxjs/toolkit";
 
 type GameType = { games: { game_id: number; numbers: number | never[] }[] };

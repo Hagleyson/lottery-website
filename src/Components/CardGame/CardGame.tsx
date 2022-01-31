@@ -1,8 +1,8 @@
-import { SubTitle } from "@globalStyle/Subtitle";
-import { Title } from "@globalStyle/Title";
+import { SubTitle } from "@GlobalStyle/Subtitle";
+import { Title } from "@GlobalStyle/Title";
 import { CardGamesStyle } from "./CardGameStyle";
 import { IoTrashOutline } from "react-icons/io5";
-import { convertToReal } from "@helpers/convertToReal";
+import { convertToReal } from "src/shared/helpers/convertToReal";
 
 const CardGame = (props: {
   color?: string;

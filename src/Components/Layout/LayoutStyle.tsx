@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import { theme } from "@globalStyle/theme";
+import { theme } from "@GlobalStyle/theme";
 
 export const LayoutStyle = styled.div`
   width: 100%;

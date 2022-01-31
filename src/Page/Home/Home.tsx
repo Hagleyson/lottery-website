@@ -1,15 +1,17 @@
-import Layout from "@componets/Layout/Layout";
-import CardGame from "@componets/UI/CardGame/CardGame";
-import { ButtonLarge } from "@globalStyle/ButtonLarge";
-import { ButtonLitle } from "@globalStyle/ButtonLitle";
-import { ContainerCardGame } from "@globalStyle/ContainerCardGame";
-import { ContainerFilter } from "@globalStyle/ContainerFilter";
-import { SubTitle } from "@globalStyle/Subtitle";
-import { Title } from "@globalStyle/Title";
+import { FC, useCallback, useEffect, useState } from "react";
+import { Layout, CardGame } from "@Components/index";
+
+import { ButtonLarge } from "@GlobalStyle/ButtonLarge";
+import { ButtonLitle } from "@GlobalStyle/ButtonLitle";
+import { ContainerCardGame } from "@GlobalStyle/ContainerCardGame";
+import { ContainerFilter } from "@GlobalStyle/ContainerFilter";
+import { SubTitle } from "@GlobalStyle/Subtitle";
+import { Title } from "@GlobalStyle/Title";
+
 import { FetchBet } from "@store/Bet";
 import { FetchListGames } from "@store/Games";
 import { RootState } from "@store/index";
-import { FC, useCallback, useEffect, useState } from "react";
+
 import { AiOutlineArrowRight } from "react-icons/ai";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router";
@@ -74,7 +76,6 @@ const Home: FC = () => {
     dispatch(FetchBet());
     dispatch(FetchListGames());
   }, [dispatch]);
-
   return (
     <Layout>
       <section>
@@ -85,6 +86,14 @@ const Home: FC = () => {
         </ContainerFilter>
 
         <ContainerCardGame isHome>
+          {bet.length <= 0 && filters.length <= 0 ? (
+            <h1>Você não possui jogo feito </h1>
+          ) : null}
+          {bet.length <= 0 && filters.length > 0 ? (
+            <h1>
+              Você não possui jogo para o(s) filtro(s) {filters.join(", ")}.{" "}
+            </h1>
+          ) : null}
           {bet.length > 0 && types.length > 0 ? ListCarts() : null}
         </ContainerCardGame>
       </section>

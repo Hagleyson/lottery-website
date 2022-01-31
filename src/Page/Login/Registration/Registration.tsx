@@ -1,6 +1,6 @@
-import { ButtonLarge } from "@globalStyle/ButtonLarge";
+import { ButtonLarge } from "@GlobalStyle/ButtonLarge";
 
-import { Title } from "@globalStyle/Title";
+import { Title } from "@GlobalStyle/Title";
 import { FC } from "react";
 import { AiOutlineArrowLeft, AiOutlineArrowRight } from "react-icons/ai";
 import { useNavigate } from "react-router-dom";
@@ -11,8 +11,8 @@ import {
   RegisterInitialValues,
   RegisterValidations,
 } from "./InitialValuesAndValidations";
-import Input from "@componets/UI/Input/Input";
-import { createUser } from "@api/createUser";
+import { Input } from "@Components/index";
+import { createUser } from "src/shared/services/createUser";
 const Registration: FC = () => {
   const navigate = useNavigate();
   const formik = useFormik({

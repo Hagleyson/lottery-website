@@ -1,5 +1,5 @@
 import { API } from "./api";
-import { createSession } from "./helpers/storage/localStorage";
+import { createSession } from "../helpers/localStorage";
 import { toast } from "react-toastify";
 
 export const loginUser = async (email: string, password: string) => {

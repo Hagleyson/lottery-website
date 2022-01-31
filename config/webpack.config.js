@@ -309,13 +309,13 @@ module.exports = function (webpackEnv) {
         .map((ext) => `.${ext}`)
         .filter((ext) => useTypeScript || !ext.includes("ts")),
       alias: {
-        "@globalStyle": path.resolve(__dirname, "../src/GloblaStyle/"),
-        "@api": path.resolve(__dirname, "../src/Api/"),
-        "@componets": path.resolve(__dirname, "../src/Components/"),
+        "@Components": path.resolve(__dirname, "../src/Components/"),
+        "@GlobalStyle": path.resolve(__dirname, "../src/GloblaStyle/"),
         "@main": path.resolve(__dirname, "../src/Main/"),
         "@page": path.resolve(__dirname, "../src/Page/"),
-        "@store": path.resolve(__dirname, "../src/Store/"),
-        "@helpers": path.resolve(__dirname, "../src/Helpers/"),
+        "@api": path.resolve(__dirname, "../src/shared/services/"),
+        "@helpers": path.resolve(__dirname, "../src/shared/helpers"),
+        "@store": path.resolve(__dirname, "../src/store/"),
 
         // Support React Native Web
         // https://www.smashingmagazine.com/2016/08/a-glimpse-into-the-future-with-react-native-for-web/
