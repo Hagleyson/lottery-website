@@ -54,7 +54,9 @@ const NewBet: FC = () => {
   const handleSave = async () => {
     if (totalValueCart < minCartValue) {
       toast.info(
-        `Valor minimo para compra é de: ${convertToReal(minCartValue)}`
+        `Valor minimo para compra é de: ${convertToReal(
+          minCartValue
+        )}. Falta ${convertToReal(minCartValue - totalValueCart)}`
       );
       return;
     } else {
