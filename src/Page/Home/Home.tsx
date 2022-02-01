@@ -1,8 +1,12 @@
 import { FC, useCallback, useEffect, useState } from "react";
-import { Layout, CardGame, SubTitle, Title, Button } from "@Components/index";
-
-import { ContainerCardGame } from "@GlobalStyle/ContainerCardGame";
-import { ContainerFilter } from "@GlobalStyle/ContainerFilter";
+import {
+  Layout,
+  CardGame,
+  SubTitle,
+  Title,
+  Button,
+  Container,
+} from "@Components/index";
 
 import { FetchBet } from "@store/Bet";
 import { FetchListGames } from "@store/Games";
@@ -76,13 +80,13 @@ const Home: FC = () => {
   return (
     <Layout>
       <section>
-        <ContainerFilter>
+        <Container type="filter">
           <Title fontsize="24">Recent Games</Title>
           <SubTitle>Filters</SubTitle>
           {types && ButtonsList()}
-        </ContainerFilter>
+        </Container>
 
-        <ContainerCardGame isHome>
+        <Container type="cardGame" isHome>
           {bet.length <= 0 && filters.length <= 0 ? (
             <h1>Você não possui jogo feito </h1>
           ) : null}
@@ -92,7 +96,7 @@ const Home: FC = () => {
             </h1>
           ) : null}
           {bet.length > 0 && types.length > 0 ? ListCarts() : null}
-        </ContainerCardGame>
+        </Container>
       </section>
       <section>
         <Button typeStyle="large" color="green" onClick={handleNewGame}>

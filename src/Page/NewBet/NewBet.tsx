@@ -1,12 +1,15 @@
 import { FC, useCallback, useEffect, useState } from "react";
 
-import { Layout, CardGame, SubTitle, Title, Button } from "@Components/index";
+import {
+  Layout,
+  CardGame,
+  SubTitle,
+  Title,
+  Button,
+  Container,
+  Ball,
+} from "@Components/index";
 
-import { ContainerButtonsNewGame } from "@GlobalStyle/ContainerButtonsNewGame";
-import { ContainerCar } from "@GlobalStyle/ContainerCar";
-import { ContainerCardGame } from "@GlobalStyle/ContainerCardGame";
-import { ContainerFilter } from "@GlobalStyle/ContainerFilter";
-import { Ball, ContainerNumbersGame } from "@GlobalStyle/ContainerNumbersGame";
 import { convertToReal } from "@helpers/convertToReal";
 import { RootState } from "@store/index";
 import { PostBet } from "@store/Bet";
@@ -106,9 +109,8 @@ const NewBet: FC = () => {
           key={c}
           color={itemIsSelected ? currentGame.color : undefined}
           onClick={handlerSelectNumber.bind(null, c + 1)}
-        >
-          <span>{c + 1 < 10 ? `0${c + 1}` : c + 1}</span>
-        </Ball>
+          content={c + 1 < 10 ? `0${c + 1}` : `${c + 1}`}
+        />
       );
     });
   };
@@ -218,13 +220,13 @@ const NewBet: FC = () => {
           NEW BET <span> FOR {currentGame.type.toLocaleUpperCase()}</span>
         </Title>
         <SubTitle>Choose a Game</SubTitle>
-        <ContainerFilter>{games ? ListButonsFilter() : null}</ContainerFilter>
+        <Container type="filter">{games ? ListButonsFilter() : null}</Container>
         <Title fontsize="17">Fill your bet</Title>
         <SubTitle>{currentGame.description}</SubTitle>
-        <ContainerNumbersGame>
+        <Container type="numberGame">
           {currentGame ? ListNumbersGame() : null}
-        </ContainerNumbersGame>
-        <ContainerButtonsNewGame>
+        </Container>
+        <Container type="filter" newGame>
           <div>
             <Button typeStyle="actionGame" onClick={handleComplete}>
               Complete game
@@ -239,14 +241,14 @@ const NewBet: FC = () => {
               Add to cart
             </Button>
           </div>
-        </ContainerButtonsNewGame>
+        </Container>
       </section>
       <section>
-        <ContainerCar>
+        <Container type="car">
           <Title fontsize="24">CART</Title>
-          <ContainerCardGame>
+          <Container type="cardGame">
             {cart.length <= 0 ? <h1>carrinho vazio!!!</h1> : ListCart()}
-          </ContainerCardGame>
+          </Container>
 
           <Title>
             CART{" "}
@@ -261,7 +263,7 @@ const NewBet: FC = () => {
             Save
             <AiOutlineArrowRight />
           </Button>
-        </ContainerCar>
+        </Container>
       </section>
     </Layout>
   );

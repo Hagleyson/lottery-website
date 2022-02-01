@@ -85,9 +85,12 @@ export const ButtonStyle = styled.button`
       background-color: ${theme.white};
             
   `} 
-   
-  color: ${(props: propsType) =>
-    props.typeStyle === "litle" && props.active && "white"};
-  background-color: ${(props: propsType) =>
-    props.typeStyle === "litle" && props.active && props.color};
+  
+  ${(props: propsType) =>
+    props.typeStyle === "litle" &&
+    props.active &&
+    `
+    color:white;
+    background-color: ${props.color};             
+  `}
 `;

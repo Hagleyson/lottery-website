@@ -6,4 +6,17 @@ import Layout from "./Layout/Layout";
 import SubTitle from "./SubTitle/SubTitle";
 import Title from "./Title/Title";
 import Button from "./Button/Button";
-export { CardGame, Footer, Header, Input, Layout, SubTitle, Title, Button };
+import Container from "./Container/Container";
+import Ball from "./Ball/Ball";
+export {
+  CardGame,
+  Footer,
+  Header,
+  Input,
+  Layout,
+  SubTitle,
+  Title,
+  Button,
+  Container,
+  Ball,
+};

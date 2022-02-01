@@ -10,6 +10,8 @@ export const CardGamesStyle = styled.div`
   width: 100%;
   max-width: 100%;
   height: 80px;
+  min-height: 80px;
+
   justify-content: start;
   align-items: center;
   margin-bottom: 20px;

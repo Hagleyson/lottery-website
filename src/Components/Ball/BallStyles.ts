@@ -1,10 +1,11 @@
 import styled from "styled-components";
-import { theme } from "./theme";
+import { theme } from "@GlobalStyle/theme";
 
 type BallType = {
   color: string | undefined;
 };
-export const Ball = styled.div`
+
+export const BallStyles = styled.div`
   width: 63px;
   height: 65px;
   border-radius: 50%;
