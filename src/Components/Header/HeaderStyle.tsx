@@ -8,6 +8,17 @@ export const HeaderStyle = styled.header`
     display: flex;
     padding: 15px;
     justify-content: space-between;
+
+    a {
+      font-weight: bold;
+      font-style: italic;
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      font-size: 25px;
+      color: ${theme.textPrimary};
+      text-decoration: none;
+    }
     > div {
       display: flex;
       align-items: center;
@@ -40,6 +51,9 @@ export const HeaderStyle = styled.header`
     svg {
       font-size: 20px;
     }
+  }
+  .active {
+    border-bottom: 2px solid ${theme.textPrimary};
   }
   @media screen and (max-width: 1015px) {
     > div {

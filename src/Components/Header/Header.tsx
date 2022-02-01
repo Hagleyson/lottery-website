@@ -6,16 +6,14 @@ import { HeaderStyle } from "./HeaderStyle";
 
 import { AiOutlineArrowRight } from "react-icons/ai";
 
-import { useNavigate } from "react-router";
+import { useNavigate, NavLink } from "react-router-dom";
 
 import { destroySession } from "@helpers/localStorage";
 import Swal from "sweetalert2";
 
 const Header: FC<{ showHome?: boolean }> = (props) => {
   const navigate = useNavigate();
-  const handleHome = () => {
-    navigate("/home");
-  };
+
   const handleLogout = () => {
     Swal.fire({
       title: "Encerrar sessão!",
@@ -40,26 +38,31 @@ const Header: FC<{ showHome?: boolean }> = (props) => {
     });
   };
 
-  const handleAccount = () => {
-    navigate("/account");
-  };
   return (
     <HeaderStyle>
       <div>
         <div>
           <Title className="logo" fontsize="44">
-            TGL <span></span>
+            TGL
           </Title>
           {props.showHome && (
-            <Title onClick={handleHome} className="linkMenu">
+            <NavLink
+              to={"/home"}
+              className={`linkMenu ${(navData: any) =>
+                navData.isActive ? "active" : null}`}
+            >
               Home
-            </Title>
+            </NavLink>
           )}
         </div>
         <div>
-          <Title className="linkMenu" onClick={handleAccount}>
+          <NavLink
+            to={"/account"}
+            className={`linkMenu ${(navData: any) =>
+              navData.isActive ? "active" : null}`}
+          >
             Account
-          </Title>
+          </NavLink>
           <Title className="linkMenu" onClick={handleLogout}>
             Log out <AiOutlineArrowRight />
           </Title>
