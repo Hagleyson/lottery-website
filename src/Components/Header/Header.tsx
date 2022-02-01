@@ -9,6 +9,7 @@ import { AiOutlineArrowRight } from "react-icons/ai";
 import { useNavigate } from "react-router";
 
 import { destroySession } from "@helpers/localStorage";
+import Swal from "sweetalert2";
 
 const Header: FC<{ showHome?: boolean }> = (props) => {
   const navigate = useNavigate();
@@ -16,10 +17,32 @@ const Header: FC<{ showHome?: boolean }> = (props) => {
     navigate("/home");
   };
   const handleLogout = () => {
-    destroySession();
-    navigate("/");
+    Swal.fire({
+      title: "Encerrar sessão!",
+      text: "Você deseja sair do sistema?",
+      icon: "warning",
+      showCancelButton: true,
+      confirmButtonColor: "#27C383",
+      cancelButtonColor: "#d33",
+      confirmButtonText: "Sim!",
+      cancelButtonText: "Não!",
+    }).then(async (result) => {
+      if (result.isConfirmed) {
+        await Swal.fire({
+          icon: "success",
+          title: "Volte Sempre!",
+          showConfirmButton: false,
+          timer: 1500,
+        });
+        await destroySession();
+        await navigate("/");
+      }
+    });
   };
 
+  const handleAccount = () => {
+    navigate("/account");
+  };
   return (
     <HeaderStyle>
       <div>
@@ -34,7 +57,9 @@ const Header: FC<{ showHome?: boolean }> = (props) => {
           )}
         </div>
         <div>
-          <Title className="linkMenu">Account</Title>
+          <Title className="linkMenu" onClick={handleAccount}>
+            Account
+          </Title>
           <Title className="linkMenu" onClick={handleLogout}>
             Log out <AiOutlineArrowRight />
           </Title>

@@ -8,6 +8,7 @@ import Title from "./Title/Title";
 import Button from "./Button/Button";
 import Container from "./Container/Container";
 import Ball from "./Ball/Ball";
+import FormAccount from "./FormAccount/FormAccount";
 export {
   CardGame,
   Footer,
@@ -19,4 +20,5 @@ export {
   Button,
   Container,
   Ball,
+  FormAccount,
 };

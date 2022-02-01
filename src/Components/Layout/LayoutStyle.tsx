@@ -1,6 +1,9 @@
 import styled from "styled-components";
 import { theme } from "@GlobalStyle/theme";
 
+type propsType = {
+  account?: boolean;
+};
 export const LayoutStyle = styled.div`
   width: 100%;
   height: 100vh;
@@ -43,10 +46,15 @@ export const LayoutStyle = styled.div`
       width: 80%;
       height: 100%;
       display: grid;
-      grid-template-columns: 60% 40%;
       > section {
         padding-top: 50px;
       }
+      ${(props: propsType) =>
+        props.account
+          ? `          
+          padding-top: 40px;
+          `
+          : `grid-template-columns: 60% 40%;`}
     }
     @media screen and (max-width: 1015px) {
       > div {

@@ -11,8 +11,6 @@ type propsType = {
 };
 
 const Button: FC<propsType> = (props) => {
-  console.log(props.color);
-  console.log(props.typeStyle);
   return (
     <ButtonStyle
       type={props.type}
