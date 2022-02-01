@@ -1,8 +1,6 @@
 import { FC, useCallback, useEffect, useState } from "react";
-import { Layout, CardGame, SubTitle, Title } from "@Components/index";
+import { Layout, CardGame, SubTitle, Title, Button } from "@Components/index";
 
-import { ButtonLarge } from "@GlobalStyle/ButtonLarge";
-import { ButtonLitle } from "@GlobalStyle/ButtonLitle";
 import { ContainerCardGame } from "@GlobalStyle/ContainerCardGame";
 import { ContainerFilter } from "@GlobalStyle/ContainerFilter";
 
@@ -58,14 +56,15 @@ const Home: FC = () => {
     return types.map((game) => {
       const isActive = filters.indexOf(game.type) >= 0;
       return (
-        <ButtonLitle
+        <Button
           key={game.type}
+          typeStyle="litle"
           color={game.color}
           onClick={handlerFilter.bind(null, game.type)}
           active={isActive}
         >
           {game.type}
-        </ButtonLitle>
+        </Button>
       );
     });
   }, [types, filters, handlerFilter]);
@@ -96,10 +95,10 @@ const Home: FC = () => {
         </ContainerCardGame>
       </section>
       <section>
-        <ButtonLarge color="green" onClick={handleNewGame}>
+        <Button typeStyle="large" color="green" onClick={handleNewGame}>
           New Bet
           <AiOutlineArrowRight />
-        </ButtonLarge>
+        </Button>
       </section>
     </Layout>
   );

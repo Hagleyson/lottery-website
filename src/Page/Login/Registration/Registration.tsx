@@ -1,12 +1,10 @@
 import { FC } from "react";
 
-import { Title, Input } from "@Components/index";
+import { Title, Input, Button } from "@Components/index";
 
 import { Form } from "../StyledContainerLogin";
 
 import { useNavigate } from "react-router-dom";
-
-import { ButtonLarge } from "@GlobalStyle/ButtonLarge";
 
 import { AiOutlineArrowLeft, AiOutlineArrowRight } from "react-icons/ai";
 
@@ -17,6 +15,7 @@ import {
 } from "./InitialValuesAndValidations";
 
 import { createUser } from "src/shared/services/createUser";
+
 const Registration: FC = () => {
   const navigate = useNavigate();
   const formik = useFormik({
@@ -78,15 +77,15 @@ const Registration: FC = () => {
           }
         />
 
-        <ButtonLarge type="submit" color="green">
+        <Button typeStyle="large" type="submit" color="green">
           Register
           <AiOutlineArrowRight />
-        </ButtonLarge>
+        </Button>
       </Form>
-      <ButtonLarge onClick={handleClick}>
+      <Button typeStyle="large" onClick={handleClick}>
         <AiOutlineArrowLeft />
         Back
-      </ButtonLarge>
+      </Button>
     </>
   );
 };

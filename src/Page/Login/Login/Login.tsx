@@ -1,9 +1,8 @@
 import { FC } from "react";
 
-import { Input, Title } from "@Components/index";
+import { Input, Title, Button } from "@Components/index";
 
 import { useNavigate } from "react-router-dom";
-import { ButtonLarge } from "@GlobalStyle/ButtonLarge";
 
 import { AiOutlineArrowRight } from "react-icons/ai";
 import { Link } from "react-router-dom";
@@ -69,14 +68,14 @@ const Login: FC = () => {
         />
         <Link to="/resetPassword">I forgot my password</Link>
 
-        <ButtonLarge color="green" type="submit">
+        <Button typeStyle="large" color="green" type="submit">
           Log In
           <AiOutlineArrowRight />
-        </ButtonLarge>
+        </Button>
       </Form>
-      <ButtonLarge onClick={handleRegister}>
+      <Button typeStyle="large" onClick={handleRegister}>
         Sign Up <AiOutlineArrowRight />
-      </ButtonLarge>
+      </Button>
     </>
   );
 };

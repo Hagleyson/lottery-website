@@ -1,12 +1,10 @@
 import { FC } from "react";
 
-import { Input, Title } from "@Components/index";
+import { Input, Title, Button } from "@Components/index";
 
 import { Form } from "../StyledContainerLogin";
 
 import { resetPassword } from "src/shared/services/resetePassword";
-
-import { ButtonLarge } from "@GlobalStyle/ButtonLarge";
 
 import { useFormik } from "formik";
 
@@ -51,14 +49,14 @@ const ResetPassword: FC = () => {
           }
         />
 
-        <ButtonLarge color="green" type="submit">
+        <Button typeStyle="large" color="green" type="submit">
           Send link
           <AiOutlineArrowRight />
-        </ButtonLarge>
+        </Button>
       </Form>
-      <ButtonLarge onClick={handleClick}>
+      <Button typeStyle="large" onClick={handleClick}>
         <AiOutlineArrowLeft /> Back
-      </ButtonLarge>
+      </Button>
     </>
   );
 };

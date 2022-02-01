@@ -1,10 +1,7 @@
 import { FC, useCallback, useEffect, useState } from "react";
 
-import { Layout, CardGame, SubTitle, Title } from "@Components/index";
+import { Layout, CardGame, SubTitle, Title, Button } from "@Components/index";
 
-import { ButtonActionsNewGame } from "@GlobalStyle/ButtonActionsNewGame";
-import { ButtonLarge } from "@GlobalStyle/ButtonLarge";
-import { ButtonLitle } from "@GlobalStyle/ButtonLitle";
 import { ContainerButtonsNewGame } from "@GlobalStyle/ContainerButtonsNewGame";
 import { ContainerCar } from "@GlobalStyle/ContainerCar";
 import { ContainerCardGame } from "@GlobalStyle/ContainerCardGame";
@@ -88,14 +85,15 @@ const NewBet: FC = () => {
   };
   const ListButonsFilter = () =>
     games.map((game: { id: number; color: string; type: string }) => (
-      <ButtonLitle
+      <Button
+        typeStyle="litle"
         key={game.id}
         color={game.color}
         onClick={handleGame.bind(null, game.id)}
         active={game.id === currentGame.id}
       >
         {game.type}
-      </ButtonLitle>
+      </Button>
     ));
   const ListNumbersGame = () => {
     const numbers = Array(currentGame.range).fill(0);
@@ -228,18 +226,18 @@ const NewBet: FC = () => {
         </ContainerNumbersGame>
         <ContainerButtonsNewGame>
           <div>
-            <ButtonActionsNewGame onClick={handleComplete}>
+            <Button typeStyle="actionGame" onClick={handleComplete}>
               Complete game
-            </ButtonActionsNewGame>
-            <ButtonActionsNewGame onClick={handlerClear}>
+            </Button>
+            <Button typeStyle="actionGame" onClick={handlerClear}>
               Clear game
-            </ButtonActionsNewGame>
+            </Button>
           </div>
           <div>
-            <ButtonActionsNewGame onClick={handlerAddToCar} addToCar>
+            <Button typeStyle="actionGame" onClick={handlerAddToCar} addToCar>
               <HiOutlineShoppingCart />
               Add to cart
-            </ButtonActionsNewGame>
+            </Button>
           </div>
         </ContainerButtonsNewGame>
       </section>
@@ -259,10 +257,10 @@ const NewBet: FC = () => {
                 : `${convertToReal(totalValueCart)}`}
             </span>
           </Title>
-          <ButtonLarge onClick={handleSave}>
+          <Button typeStyle="large" onClick={handleSave}>
             Save
             <AiOutlineArrowRight />
-          </ButtonLarge>
+          </Button>
         </ContainerCar>
       </section>
     </Layout>
